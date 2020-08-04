@@ -11,3 +11,10 @@ SDL_Texture* TextureController::LoadTexture(const char* texture) {
 
 	return tex;
 }
+
+void TextureController::Draw(SDL_Texture* tex, SDL_Rect src, SDL_Rect dest)
+{
+
+	SDL_RenderCopy(PacManGame::renderer, tex, &src, &dest);
+
+}

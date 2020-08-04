@@ -1,19 +1,21 @@
 #include "PacManGame.h"
 #include "TextureManager.h"
 #include "GameObject.h"
+#include "TileMap.h"
 
 /*Source code for PacMan*/
 
 SDL_Renderer* PacManGame::renderer = nullptr;
 
 GameObject* pacMan;
+TileMap* map;
 
 //Default ctor, itialises attributes
 PacManGame::PacManGame() {
 
     //Game screen values
-    screenWidth = 900;
-    screenHeight = 800;
+    screenWidth = 1000;
+    screenHeight = 1000;
 
     strcpy_s(gameTitle, "Not Quite Pac Man");
 
@@ -25,7 +27,11 @@ PacManGame::PacManGame() {
 }
 
 //Default dtor
-PacManGame::~PacManGame() {}
+PacManGame::~PacManGame() {
+    // for some reason this causes the visual studio to throw a fit
+    //delete map;
+    delete pacMan;
+}
 
 //Initialises the game
 void PacManGame::gameInit() {
@@ -57,6 +63,7 @@ void PacManGame::gameInit() {
         isGameRunning = true;
 
         pacMan = new GameObject("Images/PM_Sheet.png");
+        map = new TileMap();
 
     }
 
@@ -87,6 +94,7 @@ void PacManGame::gameRender() {
 
     SDL_RenderClear(renderer);
 
+    map->drawMap();
     pacMan->renderObject();
 
     SDL_RenderPresent(renderer);
