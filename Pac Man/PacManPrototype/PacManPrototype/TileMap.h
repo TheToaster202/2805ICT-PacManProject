@@ -13,6 +13,8 @@ public:
 	void imageData();
 	void mapData(int lvl);
 
+	int** getMap();
+
 private:
 
 	SDL_Rect src, dest;
@@ -22,8 +24,8 @@ private:
 	int cols;
 
 	int **map;
-	int imageX[39];
-	int imageY[39];
+	int imageX[44];
+	int imageY[44];
 	
 	int lvlID;
 };

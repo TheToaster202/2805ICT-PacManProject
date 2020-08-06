@@ -42,8 +42,6 @@ private:
         /*can always tell the library is old when it requires the use of pointers rather than references*/
     SDL_Window* gameWindow;
 
-    
-
 };
 
 #endif /*PacManGame_h*/

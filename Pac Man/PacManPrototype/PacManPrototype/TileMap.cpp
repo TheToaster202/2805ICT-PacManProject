@@ -13,13 +13,13 @@ TileMap::TileMap() {
 	rows = 0;
 	cols = 0;
 	
-	src.h = 16;
-	src.w = 16;
+	src.h = 8;
+	src.w = 8;
 	src.x = 0;
 	src.y = 0;
 
-	dest.h = 64;
-	dest.w = 64;
+	dest.h = 24;
+	dest.w = 24;
 	dest.x = 0;
 	dest.y = 0;
 	
@@ -74,8 +74,8 @@ void TileMap::drawMap(){
 			src.x = imageX[tileId];
 			src.y = imageY[tileId];
 
-			dest.x = i*32;
-			dest.y = j*32;
+			dest.x = i*24;
+			dest.y = j*24;
 
 			TextureController::Draw(map_tiles, src, dest);
 		}
@@ -120,6 +120,17 @@ void TileMap::imageData() {
 
 	input.close();
 
+	for (int i = 0; i < 39; i++) {
+		std::cout << imageX[i] << " ";
+	}
+
+	std::cout << std::endl;
+
+	for (int i = 0; i < 39; i++) {
+		std::cout << imageY[i] << " ";
+	}
+
+	std::cout << std::endl;
 }
 
 void TileMap::mapData(int lvl) {
@@ -127,9 +138,11 @@ void TileMap::mapData(int lvl) {
 	//Reads the layout of the level from the corresponding file
 
 	std::string fileName = "map";
-	fileName += lvl + ".txt";
+	fileName += std::to_string(lvl) + ".txt";
 
 	std::string filePath = "Misc/" + fileName;
+
+	std::cout << "Looking for: " << filePath << std::endl;
 
 	std::ifstream input(filePath);
 	if (!input) {
@@ -197,3 +210,6 @@ void TileMap::mapData(int lvl) {
 	input.close();
 	
 }
+
+//Might be needed to get the map information to the controller
+int** TileMap::getMap() { return map; }
