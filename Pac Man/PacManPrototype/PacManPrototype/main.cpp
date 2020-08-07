@@ -1,7 +1,6 @@
 #include "PacManGame.h"
 #include <cstdio>
 
-//Test File to get SDL2 to link and run properly, probably won't be used for too long
 int main(int argc, char* argv[]) {
 
     PacManGame* pacMan = nullptr;
@@ -15,6 +14,7 @@ int main(int argc, char* argv[]) {
 
     pacMan->gameInit();
 
+    //Main game loop, will run until isRunning is false
     while (pacMan->gameRunning()) {
 
         frameStart = SDL_GetTicks();
@@ -25,6 +25,7 @@ int main(int argc, char* argv[]) {
 
         frameTime = SDL_GetTicks() - frameStart;
 
+        //Caps the framerate to 60 per second, might lower it further
         if (frameDelay > frameTime) {
             SDL_Delay(frameDelay - frameTime);
         }

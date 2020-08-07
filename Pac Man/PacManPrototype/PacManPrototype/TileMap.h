@@ -13,7 +13,7 @@ public:
 	void imageData();
 	void mapData(int lvl);
 
-	int** getMap();
+	int getMapVal(int x, int y);
 
 private:
 

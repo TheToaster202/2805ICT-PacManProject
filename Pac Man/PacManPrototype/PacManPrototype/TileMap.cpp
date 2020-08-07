@@ -212,4 +212,4 @@ void TileMap::mapData(int lvl) {
 }
 
 //Might be needed to get the map information to the controller
-int** TileMap::getMap() { return map; }
+int TileMap::getMapVal(int x, int y) { return map[y][x]; }

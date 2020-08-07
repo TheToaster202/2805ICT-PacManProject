@@ -32,6 +32,7 @@ public:
     static SDL_Renderer* renderer;
 
 private:
+    //Attributes
     int screenWidth, screenHeight;
 
     char gameTitle[19];
@@ -39,7 +40,6 @@ private:
     bool isGameRunning;
 
     //SDL variables for the window and renderer methods
-        /*can always tell the library is old when it requires the use of pointers rather than references*/
     SDL_Window* gameWindow;
 
 };

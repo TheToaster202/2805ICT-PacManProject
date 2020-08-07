@@ -1,7 +1,7 @@
 #include "PacManGame.h"
 #include "TextureManager.h"
 #include "GameObject.h"
-#include "TileMap.h"
+
 
 /*Source code for PacMan*/
 
@@ -47,11 +47,13 @@ void PacManGame::gameInit() {
         Or make them debug mode only*/
         std::cout << "Game systems successfully initialised" << std::endl;
 
+        //Creates the game windows and centres it in the screen
         gameWindow = SDL_CreateWindow(gameTitle, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screenWidth, screenHeight, SDL_WINDOW_SHOWN);
         if (gameWindow) {
             std::cout << "Windows Created" << std::endl;
         }
 
+        //Creates the game renderer
         renderer = SDL_CreateRenderer(gameWindow, -1, 0);
         if (renderer) {
 
@@ -60,15 +62,17 @@ void PacManGame::gameInit() {
 
         }
 
-        isGameRunning = true;
+        isGameRunning = true;   //Sets the game to running
 
-        pacMan = new GameObject("Images/PM_Sheet.png");
-        map = new TileMap();
+        /*Might need to move these*/
+        pacMan = new GameObject("Images/PM_Sheet.png"); //Player
+        map = new TileMap(); //Map
 
     }
 
 }
 
+//Handles the events on the game window
 void PacManGame::eventHandler() {
 
     SDL_Event gameEvent;
@@ -84,12 +88,14 @@ void PacManGame::eventHandler() {
     }
 }
 
+//Items to be updated every frame
 void PacManGame::gameUpdate() {
 
-    pacMan->updateObject();
+    pacMan->updateObject(map);
 
 }
 
+//Items to be rendered every frame
 void PacManGame::gameRender() {
 
     SDL_RenderClear(renderer);
@@ -101,6 +107,7 @@ void PacManGame::gameRender() {
 
 }
 
+//Cleans SDL2 variables
 void PacManGame::cleanGame() {
 
     //Clears the games memory, as used by SDL
@@ -111,4 +118,5 @@ void PacManGame::cleanGame() {
     std::cout << "Game Memory Cleaned" << std::endl;
 }
 
+//Returns if the game is running
 bool PacManGame::gameRunning() { return isGameRunning; }
