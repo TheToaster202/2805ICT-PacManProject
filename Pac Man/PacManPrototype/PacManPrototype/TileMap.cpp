@@ -8,6 +8,8 @@
 
 //Image map, hold the starting x and y pos for the walls
 
+
+//! Delagates to the image and map data methods to collect data about the levels, then delegates to the draw map method to create the map
 TileMap::TileMap() {
 
 	rows = 0;
@@ -49,7 +51,7 @@ TileMap::~TileMap(){
 
 }
 
-//This might not be needed
+//! This might not be needed
 void TileMap::loadMap(){
 
 	for (int i = 0; i < cols; i++) {
@@ -60,6 +62,7 @@ void TileMap::loadMap(){
 
 }
 
+//! Using the image data and the map layout, draws the map to the screen
 void TileMap::drawMap(){
 
 	//Draws the tiles onto the screen
@@ -84,6 +87,8 @@ void TileMap::drawMap(){
 
 }
 
+
+//! Opens the stored imageXY text file, which contains the pixle positons of the different tiles within the texture file
 void TileMap::imageData() {
 
 	//Reads from a file, how to seperate the different parts of the image into useable tiles
@@ -133,6 +138,7 @@ void TileMap::imageData() {
 	std::cout << std::endl;
 }
 
+//! Opens the stores map(lvl num) text file and allocates the memory required to store the maps information in a 2d array
 void TileMap::mapData(int lvl) {
 
 	//Reads the layout of the level from the corresponding file
@@ -211,5 +217,4 @@ void TileMap::mapData(int lvl) {
 	
 }
 
-//Might be needed to get the map information to the controller
 int TileMap::getMapVal(int x, int y) { return map[y][x]; }

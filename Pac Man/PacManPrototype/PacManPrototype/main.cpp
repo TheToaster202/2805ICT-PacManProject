@@ -1,12 +1,19 @@
 #include "PacManGame.h"
 #include <cstdio>
 
+/// <summary>
+/// A prototype recreation of the 1980's game Pac Man
+/// </summary>
+/// <param name="argc"></param>
+/// <param name="argv"></param>
+/// <returns>Exit_Success</returns>
+
 int main(int argc, char* argv[]) {
 
     PacManGame* pacMan = nullptr;
     pacMan = new PacManGame();
 
-    const int FPS = 60;
+    const int FPS = 24;
     const int frameDelay = 1000 / FPS;
 
     Uint32 frameStart;
@@ -20,8 +27,9 @@ int main(int argc, char* argv[]) {
         frameStart = SDL_GetTicks();
 
         pacMan->eventHandler();
-        pacMan->gameRender();
         pacMan->gameUpdate();
+        pacMan->gameRender();
+        
 
         frameTime = SDL_GetTicks() - frameStart;
 

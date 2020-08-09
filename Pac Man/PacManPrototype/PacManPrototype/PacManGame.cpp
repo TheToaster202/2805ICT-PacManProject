@@ -2,15 +2,11 @@
 #include "TextureManager.h"
 #include "GameObject.h"
 
-
-/*Source code for PacMan*/
-
 SDL_Renderer* PacManGame::renderer = nullptr;
 
 GameObject* pacMan;
 TileMap* map;
 
-//Default ctor, itialises attributes
 PacManGame::PacManGame() {
 
     //Game screen values
@@ -24,16 +20,18 @@ PacManGame::PacManGame() {
     renderer = nullptr;
 
     isGameRunning = false;
+
+    keyInput = 0;
 }
 
-//Default dtor
+
 PacManGame::~PacManGame() {
     // for some reason this causes the visual studio to throw a fit
     //delete map;
     delete pacMan;
 }
 
-//Initialises the game
+//! Initialises the game by creating the window, renderer, player character and map
 void PacManGame::gameInit() {
 
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
@@ -72,7 +70,7 @@ void PacManGame::gameInit() {
 
 }
 
-//Handles the events on the game window
+//! Handles the events on the game window, qutting, keyboard input
 void PacManGame::eventHandler() {
 
     SDL_Event gameEvent;
@@ -83,19 +81,41 @@ void PacManGame::eventHandler() {
     case SDL_QUIT:
         isGameRunning = false;
         break;
+    case SDL_KEYDOWN:
+        
+        switch (gameEvent.key.keysym.sym) {
+        case SDLK_UP:
+            keyInput = 1;
+            break;
+        case SDLK_DOWN:
+            keyInput = 2;
+            break;
+        case SDLK_RIGHT:
+            keyInput = 3;
+            break;
+        case SDLK_LEFT:
+            keyInput = 4;
+            break;
+        default:
+            keyInput = 0;
+            break;
+        }
+        
+        break;
     default:
         break;
     }
 }
 
-//Items to be updated every frame
+//! Handles updating ojects every frame such as player movement, score, timers and the ghosts
 void PacManGame::gameUpdate() {
 
-    pacMan->updateObject(map);
+    pacMan->updateObject(map, keyInput);
 
 }
 
-//Items to be rendered every frame
+//! Renders the map, player character and ghosts.
+//! Works on a layering system, items rendered first are on a lower layer than those that follow
 void PacManGame::gameRender() {
 
     SDL_RenderClear(renderer);
@@ -107,7 +127,7 @@ void PacManGame::gameRender() {
 
 }
 
-//Cleans SDL2 variables
+//! Cleans SDL2 variables by using SDL2 specific destructors
 void PacManGame::cleanGame() {
 
     //Clears the games memory, as used by SDL
@@ -118,5 +138,4 @@ void PacManGame::cleanGame() {
     std::cout << "Game Memory Cleaned" << std::endl;
 }
 
-//Returns if the game is running
 bool PacManGame::gameRunning() { return isGameRunning; }

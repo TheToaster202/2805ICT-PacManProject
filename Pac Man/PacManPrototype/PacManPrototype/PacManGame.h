@@ -10,36 +10,43 @@
 #include "SDL.h"
 #include "SDL_image.h"
 
-/*Header File for PacMan, need to practise class method seperation anyway...*/
+/// Acts as the main Parent Class for the game and is resposible for all game functionality
 
 class PacManGame {
 public:
 
-    //Deafult Constructor/Destructor for the game
+    //! Deafult Constructor for the game
     PacManGame();
+    //! Default Destructor
     ~PacManGame();
 
     //Game Specific methods
 
+    //! Initialises the game
     void gameInit();
+    //! Handles the events that happen on the game window
     void eventHandler();
+    //! Updates item information every frame
     void gameUpdate();
+    //! Handles rendering items every frame
     void gameRender();
+    //! Cleans SLD2 specific variables
     void cleanGame();
-
+    //! Returns whether or not the game is still running
     bool gameRunning();
 
     static SDL_Renderer* renderer;
 
 private:
-    //Attributes
+    //!Attributes
     int screenWidth, screenHeight;
+    int keyInput;
 
     char gameTitle[19];
 
     bool isGameRunning;
 
-    //SDL variables for the window and renderer methods
+    //! SDL variables for the window and renderer methods
     SDL_Window* gameWindow;
 
 };

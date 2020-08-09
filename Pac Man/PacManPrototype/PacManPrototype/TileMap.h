@@ -1,18 +1,28 @@
 #pragma once
 #include "PacManGame.h"
 
+
+/// A class that handles the loading and generation of the game level
+
 class TileMap {
 public:
 
+	//! Default Constructor
 	TileMap();
+	//! Default Destructor
 	~TileMap();
 
+	//! N/A
 	void loadMap();
+	//! Draws the map to the screen based on the given tile preset and the map file
 	void drawMap();
 
+	//! Gets the tile set information from a given file
 	void imageData();
+	//! Gets the layout of the level from a map file
 	void mapData(int lvl);
 
+	//! Returns the value contained within the x and y values on the map
 	int getMapVal(int x, int y);
 
 private:

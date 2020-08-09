@@ -1,7 +1,20 @@
 ﻿  GameObject.cpp
+E:\User Data\Documents\2020 Work\Trimester 2\Systems and Software Design\Assessment\2805ICT-Milestone1\Pac Man\PacManPrototype\PacManPrototype\GameObject.cpp(21,25): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+E:\User Data\Documents\2020 Work\Trimester 2\Systems and Software Design\Assessment\2805ICT-Milestone1\Pac Man\PacManPrototype\PacManPrototype\GameObject.cpp(22,25): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+E:\User Data\Documents\2020 Work\Trimester 2\Systems and Software Design\Assessment\2805ICT-Milestone1\Pac Man\PacManPrototype\PacManPrototype\GameObject.cpp(42,38): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+E:\User Data\Documents\2020 Work\Trimester 2\Systems and Software Design\Assessment\2805ICT-Milestone1\Pac Man\PacManPrototype\PacManPrototype\GameObject.cpp(42,32): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+E:\User Data\Documents\2020 Work\Trimester 2\Systems and Software Design\Assessment\2805ICT-Milestone1\Pac Man\PacManPrototype\PacManPrototype\GameObject.cpp(54,40): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+E:\User Data\Documents\2020 Work\Trimester 2\Systems and Software Design\Assessment\2805ICT-Milestone1\Pac Man\PacManPrototype\PacManPrototype\GameObject.cpp(54,29): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+E:\User Data\Documents\2020 Work\Trimester 2\Systems and Software Design\Assessment\2805ICT-Milestone1\Pac Man\PacManPrototype\PacManPrototype\GameObject.cpp(57,40): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+E:\User Data\Documents\2020 Work\Trimester 2\Systems and Software Design\Assessment\2805ICT-Milestone1\Pac Man\PacManPrototype\PacManPrototype\GameObject.cpp(57,29): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+E:\User Data\Documents\2020 Work\Trimester 2\Systems and Software Design\Assessment\2805ICT-Milestone1\Pac Man\PacManPrototype\PacManPrototype\GameObject.cpp(60,39): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+E:\User Data\Documents\2020 Work\Trimester 2\Systems and Software Design\Assessment\2805ICT-Milestone1\Pac Man\PacManPrototype\PacManPrototype\GameObject.cpp(60,34): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+E:\User Data\Documents\2020 Work\Trimester 2\Systems and Software Design\Assessment\2805ICT-Milestone1\Pac Man\PacManPrototype\PacManPrototype\GameObject.cpp(64,39): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+E:\User Data\Documents\2020 Work\Trimester 2\Systems and Software Design\Assessment\2805ICT-Milestone1\Pac Man\PacManPrototype\PacManPrototype\GameObject.cpp(64,34): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  main.cpp
   Generating code
-  2 of 251 functions ( 0.8%) were compiled, the rest were copied from previous compilation.
+  4 of 252 functions ( 1.6%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+    0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   PacManPrototype.vcxproj -> E:\User Data\Documents\2020 Work\Trimester 2\Systems and Software Design\Assessment\2805ICT-Milestone1\Pac Man\PacManPrototype\x64\Release\PacManPrototype.exe
