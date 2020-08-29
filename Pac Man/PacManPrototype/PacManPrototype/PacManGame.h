@@ -48,7 +48,6 @@ private:
 
     //! SDL variables for the window and renderer methods
     SDL_Window* gameWindow;
-
 };
 
 #endif /*PacManGame_h*/

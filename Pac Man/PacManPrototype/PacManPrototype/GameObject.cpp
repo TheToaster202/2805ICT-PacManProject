@@ -28,19 +28,22 @@ GameObject::GameObject(const char* texturePath) {
 
 	animIndex = 0;
 	indexer = 0;
+	
+	xVel = 0;
+	yVel = 0;
 
 }
 
 GameObject::~GameObject(){}
 
 //! Encapsulates all items about the player character that are to updated every frame
-void GameObject::updateObject(TileMap *map, const int &newDir) {
+void GameObject::updateObject(TileMap *map, const int &newDir, const float &timeStep) {
 
-	//if (direction != 0 && (destRect.y + 10) % 24 == 0 && (destRect.x + 10) % 24 == 0) {
+	/*if (direction != 0 && (destRect.y + 10) % 24 == 0 && (destRect.x + 10) % 24 == 0) {
 		mapY = (destRect.y + 10) / 24;
 		mapX = (destRect.x + 10) / 24;
 		currentTile = map->getMapVal(mapX, mapY);
-	//}
+	}*/
 
 	direction = newDir;
 
@@ -50,18 +53,26 @@ void GameObject::updateObject(TileMap *map, const int &newDir) {
 		//nextTile = currentTile;
 		break;
 	case 1:
-		mapY += 1;
+		//mapY += 1;
 		nextTile = map->getMapVal(mapX, mapY - 1);
+		yVel = (-1 * objVel)*0.5;
+		xVel = 0;
 		break;
 	case 2:
 		nextTile = map->getMapVal(mapX, mapY + 1);
+		yVel = objVel;
+		xVel = 0;
 		break;
 	case 3:
 		nextTile = map->getMapVal(mapX + 1, mapY);
+		xVel = objVel;
+		yVel = 0;
 		break;
 	case 4:
-		mapY += 1;
+		//mapY += 1;
 		nextTile = map->getMapVal(mapX - 1, mapY);
+		xVel = (-1 * objVel)*0.5;
+		yVel = 0;
 		break;
 	default:
 		direction = 0;
@@ -69,10 +80,10 @@ void GameObject::updateObject(TileMap *map, const int &newDir) {
 		break;
 	}
 
-	std::cout << mapX << " " << mapY << " " << direction << " " << nextTile << std::endl << destRect.x << " " << destRect.y << std::endl;
+	//std::cout << mapX << " " << mapY << " " << direction << " " << nextTile << std::endl << destRect.x << " " << destRect.y << std::endl;
 
 	//Moves the player
-	moveObject(currentTile, nextTile);
+	moveObject(timeStep);
 	animateObject();
 	
 }
@@ -82,35 +93,37 @@ void GameObject::renderObject() {
 }
 
 //! Method that will handle calculating the next position of the player char
-void GameObject::moveObject(const int &currentTile, const int &nextTile) {
+void GameObject::moveObject(const float &timeStep) {
 	
 	int posTest= 0;
 
-	if (nextTile != 7 && nextTile != 16 && nextTile != 15) {
+	/*if (nextTile != 7 && nextTile != 16 && nextTile != 15) {
 		direction = 0;
 		return;
-	}
+	}*/
 
-	switch (direction) {
+	/*switch (direction) {
 	case 1:
-		destRect.y -= 4;
+		destRect.y -= yVel * timeStep;
 		break;
 	case 2:
-		destRect.y += 4;
-
+		destRect.y += yVel * timeStep;
 		break;
 	case 3:
-		destRect.x += 4;
-
+		destRect.x += xVel * timeStep;
 		break;
 	case 4:
-		destRect.x -= 4;
-
+		destRect.x -= xVel * timeStep;
 		break;
 	default:
 		direction = 0;
 		break;
-	}
+	}*/
+
+	destRect.y += (yVel * timeStep);
+	destRect.x += (xVel * timeStep);
+
+	std::cout << yVel * timeStep << " " << xVel * timeStep << " " << timeStep << std::endl;
 }
 
 //! Methods that handels animating the player character, based on the direction they are currently moving

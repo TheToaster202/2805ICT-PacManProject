@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameTimer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PacManGame.cpp" />
     <ClCompile Include="TextureManager.cpp" />
@@ -159,6 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameTimer.h" />
     <ClInclude Include="PacManGame.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="TileMap.h" />

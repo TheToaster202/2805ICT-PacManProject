@@ -1,11 +1,13 @@
 #include "PacManGame.h"
 #include "TextureManager.h"
 #include "GameObject.h"
+#include "GameTimer.h"
 
 SDL_Renderer* PacManGame::renderer = nullptr;
 
 GameObject* pacMan;
 TileMap* map;
+GameTimer stepTimer;
 
 PacManGame::PacManGame() {
 
@@ -109,8 +111,12 @@ void PacManGame::eventHandler() {
 
 //! Handles updating ojects every frame such as player movement, score, timers and the ghosts
 void PacManGame::gameUpdate() {
+    
+    float timeStep = stepTimer.getTicks() / 1000.f;
 
-    pacMan->updateObject(map, keyInput);
+    pacMan->updateObject(map, keyInput, timeStep);
+
+    stepTimer.start();
 
 }
 

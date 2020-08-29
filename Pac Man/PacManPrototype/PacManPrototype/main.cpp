@@ -13,7 +13,7 @@ int main(int argc, char* argv[]) {
     PacManGame* pacMan = nullptr;
     pacMan = new PacManGame();
 
-    const int FPS = 24;
+    const int FPS = 60;
     const int frameDelay = 1000 / FPS;
 
     Uint32 frameStart;
@@ -29,11 +29,10 @@ int main(int argc, char* argv[]) {
         pacMan->eventHandler();
         pacMan->gameUpdate();
         pacMan->gameRender();
-        
 
         frameTime = SDL_GetTicks() - frameStart;
 
-        //Caps the framerate to 60 per second, might lower it further
+        //Caps the framerate to 60 per second
         if (frameDelay > frameTime) {
             SDL_Delay(frameDelay - frameTime);
         }
