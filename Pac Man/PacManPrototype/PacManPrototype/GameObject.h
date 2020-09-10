@@ -15,13 +15,11 @@ public:
 	~GameObject();
 
 	//! Updates the player character with every frame
-	void updateObject(TileMap *map, int const &newDir, float const &timeStep);
+	void updateObject(TileMap *map, int const &newDir, int const &timeStep);
 	//! Renders the player character to the screen every frame
 	void renderObject();
 	//! Handles the movement of the player character
-	void moveObject(const float &timeStep);
-	//! Detects collisions
-	void objectCollision(const int& currentTile, const int& nextTile);
+	void moveObject(const int &timeStep);
 	//! Animates the player character
 	void animateObject();
 
@@ -33,8 +31,8 @@ private:
 	SDL_Rect srcRect, destRect;
 
 	//!Holds the player characters position on the 2d map array
-	double mapX;
-	double mapY;
+	int mapX;
+	int mapY;
 
 	//!Players moving direction (Still - 0, Up - 1, Down - 2, Right - 3, Left - 4)
 	int direction;
@@ -59,8 +57,8 @@ private:
 	int leftWakaX[3] = {0, 16, 32};
 	int leftWakaY[3] = {0, 0, 0};
 
-	static const int objVel = 100;
+	static const int objVel = 1;
 	
-	float xVel;
-	float yVel;
+	double xVel;
+	double yVel;
 };

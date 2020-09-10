@@ -31,14 +31,14 @@ TileMap::TileMap() {
 
 	lvlID = 0;
 
-	map_tiles = TextureController::LoadTexture("Images/Tile_Sheet.png");
+	offset = 80;
+
+	std::cout << rows << " " << cols << std::endl;
 
 	imageData();
 
 	//Currently going to default to the test map, will need to implement some way of changing level and level type (Reg, hex and graph)
 	mapData(lvlID);
-
-	std::cout << rows << " " << cols << std::endl;
 	
 }
 
@@ -51,14 +51,10 @@ TileMap::~TileMap(){
 
 }
 
-//! This might not be needed
+//! Loads the texture from a file
 void TileMap::loadMap(){
 
-	for (int i = 0; i < cols; i++) {
-		for (int j = 0; j < rows; j++) {
-
-		}
-	}
+	map_tiles = TextureController::LoadTexture("Images/Tile_Sheet.png");
 
 }
 
@@ -77,8 +73,8 @@ void TileMap::drawMap(){
 			src.x = imageX[tileId];
 			src.y = imageY[tileId];
 
-			dest.x = i*24;
-			dest.y = j*24;
+			dest.x = (i*24);
+			dest.y = (j*24) + offset;
 
 			TextureController::Draw(map_tiles, src, dest);
 		}
@@ -218,3 +214,27 @@ void TileMap::mapData(int lvl) {
 }
 
 int TileMap::getMapVal(int x, int y) { return map[y][x]; }
+
+void TileMap::changeTile(int const& x, int const& y) {
+	
+	if (map[y][x] == 15 || map[y][x] == 16) {
+		map[y][x] = 7;
+	}
+
+}
+
+int TileMap::getTilePos(int const & x, int const & y) {
+
+}
+
+int TileMap::getRows() {
+	return rows;
+}
+
+int TileMap::getCols() {
+	return cols;
+}
+
+int TileMap::getOffset() {
+	return offset;
+}

@@ -13,7 +13,7 @@ int main(int argc, char* argv[]) {
     PacManGame* pacMan = nullptr;
     pacMan = new PacManGame();
 
-    const int FPS = 60;
+    const int FPS = 24;
     const int frameDelay = 1000 / FPS;
 
     Uint32 frameStart;

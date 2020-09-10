@@ -25,6 +25,16 @@ public:
 	//! Returns the value contained within the x and y values on the map
 	int getMapVal(int x, int y);
 
+	//! Changes the tile
+	void changeTile(int const& x, int const& y);
+
+	int getTilePos(int const & x, int const & y);
+
+	int getRows();
+	int getCols();
+
+	int getOffset();
+
 private:
 
 	SDL_Rect src, dest;
@@ -38,4 +48,6 @@ private:
 	int imageY[44];
 	
 	int lvlID;
+
+	int offset;
 };

@@ -2,18 +2,24 @@
 #include "TextureManager.h"
 #include "GameObject.h"
 #include "GameTimer.h"
+#include "Score.h"
+#include "UI.h"
 
 SDL_Renderer* PacManGame::renderer = nullptr;
 
 GameObject* pacMan;
 TileMap* map;
 GameTimer stepTimer;
+PacScore gameScore;
+GameUI ui;
+
+int timeCount = 0;
 
 PacManGame::PacManGame() {
 
     //Game screen values
-    screenWidth = 1000;
-    screenHeight = 1000;
+    screenWidth = 0;
+    screenHeight = 0;
 
     strcpy_s(gameTitle, "Not Quite Pac Man");
 
@@ -24,6 +30,8 @@ PacManGame::PacManGame() {
     isGameRunning = false;
 
     keyInput = 0;
+
+    stepTimer.start();
 }
 
 
@@ -47,6 +55,14 @@ void PacManGame::gameInit() {
         Or make them debug mode only*/
         std::cout << "Game systems successfully initialised" << std::endl;
 
+        //Loading map data, to get the needed size of the screen
+        map = new TileMap(); //Map
+
+        screenHeight = (map->getRows() * 24) + map->getOffset();
+        screenWidth = (map->getCols() * 24);
+
+        ui.initUI(map->getOffset(), screenWidth);
+
         //Creates the game windows and centres it in the screen
         gameWindow = SDL_CreateWindow(gameTitle, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screenWidth, screenHeight, SDL_WINDOW_SHOWN);
         if (gameWindow) {
@@ -64,12 +80,12 @@ void PacManGame::gameInit() {
 
         isGameRunning = true;   //Sets the game to running
 
-        /*Might need to move these*/
+        map->loadMap();
+
         pacMan = new GameObject("Images/PM_Sheet.png"); //Player
-        map = new TileMap(); //Map
 
     }
-
+        
 }
 
 //! Handles the events on the game window, qutting, keyboard input
@@ -112,12 +128,22 @@ void PacManGame::eventHandler() {
 //! Handles updating ojects every frame such as player movement, score, timers and the ghosts
 void PacManGame::gameUpdate() {
     
-    float timeStep = stepTimer.getTicks() / 1000.f;
+    int timeStep = stepTimer.getTicks() / 60;
+    int moveAllower = 0;
 
-    pacMan->updateObject(map, keyInput, timeStep);
+    std::cout << "Timer: " << timeStep << std::endl;
 
-    stepTimer.start();
+    if (timeStep > timeCount) {
+        timeCount = timeStep;
+        moveAllower = 1;
+    }
 
+    pacMan->updateObject(map, keyInput, moveAllower);
+
+    /*if (timeStep % 2 == 0) {
+        //stepTimer.pause();
+        std::cout << "TIMER PASUSED: " << timeStep << std::endl;
+    }*/
 }
 
 //! Renders the map, player character and ghosts.
@@ -128,6 +154,8 @@ void PacManGame::gameRender() {
 
     map->drawMap();
     pacMan->renderObject();
+
+    ui.renderUI();
 
     SDL_RenderPresent(renderer);
 
