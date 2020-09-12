@@ -2,10 +2,14 @@
 #include <cmath>
 
 PacScore::PacScore() {
+
+	TTF_Init();
+	
 	gameScore = 0;
 	scaleFactor = 0;
 	type1 = 10, type2 = 100, type3 = 500;
 	factorConst = 2.5;
+
 }
 
 void PacScore::increaseScore(int const & scoreType, double const & currentTimer) {
@@ -38,37 +42,4 @@ double PacScore::scoreScale(double const & currentTimer) {
 	
 }
 
-void PacScore::renderScore() {
-
-	char scoreString[100];
-
-	strcpy_s(scoreString, 100, "SCORE ");
-
-	if (gameScore > 99999) {
-		strcat_s(scoreString, 100, "99999");
-	}
-	else {
-		char tempString[10];
-		
-		sprintf_s(tempString, 10, "%d", gameScore);
-
-		strcat_s(scoreString, 100, tempString);
-	}
-
-	TTF_Font* sansFont = TTF_OpenFont("Font/ARLRDBD.ttf", 24);
-	SDL_Color fontColour = {255, 255, 255};
-	SDL_Surface* surfaceMessage = TTF_RenderText_Solid(sansFont, scoreString, fontColour);
-	SDL_Texture* message = SDL_CreateTextureFromSurface(PacManGame::renderer, surfaceMessage);
-
-	SDL_Rect messageRect;
-	messageRect.x = 10;
-	messageRect.y = 10;
-	messageRect.w = 100;
-	messageRect.h = 100;
-
-	SDL_RenderCopy(PacManGame::renderer, message, NULL, &messageRect);
-
-	SDL_FreeSurface(surfaceMessage);
-	SDL_DestroyTexture(message);
-
-}
+int PacScore::getScore() { return gameScore; }

@@ -150,14 +150,14 @@ void PacManGame::gameUpdate() {
 //! Works on a layering system, items rendered first are on a lower layer than those that follow
 void PacManGame::gameRender() {
 
+    int timeStep = stepTimer.getTicks() / 1000;
+    
     SDL_RenderClear(renderer);
 
     map->drawMap();
     pacMan->renderObject();
 
-    ui.renderUI();
-
-    gameScore.renderScore();
+    ui.renderUI(map->getOffset(), screenWidth, gameScore.getScore(), timeStep);
 
     SDL_RenderPresent(renderer);
 
