@@ -14,6 +14,9 @@ public:
 	//! Scores the scoring factor, based on the amount of time the game has been running for.
 	double scoreScale(const double & currentTimer);
 
+	//Renders the score to the screen
+	void renderScore();
+
 private:
 
 	int gameScore;	//Current Score

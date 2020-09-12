@@ -128,17 +128,17 @@ void PacManGame::eventHandler() {
 //! Handles updating ojects every frame such as player movement, score, timers and the ghosts
 void PacManGame::gameUpdate() {
     
-    int timeStep = stepTimer.getTicks() / 60;
-    int moveAllower = 0;
+    int timeStep = stepTimer.getTicks() / 1000;
+    int moveAllower = 1;
 
-    std::cout << "Timer: " << timeStep << std::endl;
+    //std::cout << "Timer: " << timeStep << std::endl;
 
-    if (timeStep > timeCount) {
+    /*if (timeStep > timeCount) {
         timeCount = timeStep;
         moveAllower = 1;
-    }
+    }*/
 
-    pacMan->updateObject(map, keyInput, moveAllower);
+    pacMan->updateObject(map, gameScore, keyInput, timeStep);
 
     /*if (timeStep % 2 == 0) {
         //stepTimer.pause();
@@ -156,6 +156,8 @@ void PacManGame::gameRender() {
     pacMan->renderObject();
 
     ui.renderUI();
+
+    gameScore.renderScore();
 
     SDL_RenderPresent(renderer);
 

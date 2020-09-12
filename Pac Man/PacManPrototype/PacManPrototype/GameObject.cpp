@@ -37,7 +37,7 @@ GameObject::GameObject(const char* texturePath) {
 GameObject::~GameObject(){}
 
 //! Encapsulates all items about the player character that are to updated every frame
-void GameObject::updateObject(TileMap *map, const int &newDir, const int &timeStep) {
+void GameObject::updateObject(TileMap *map, PacScore & score, const int &newDir, const int &timeStep) {
 
 	/*if (direction != 0 && (destRect.y + 10) % 24 == 0 && (destRect.x + 10) % 24 == 0) {
 		mapY = (destRect.y + 10) / 24;
@@ -54,6 +54,14 @@ void GameObject::updateObject(TileMap *map, const int &newDir, const int &timeSt
 
 	if (currentTile == 15 || currentTile == 16) {
 		map->changeTile(mapX, mapY);
+		
+		if (currentTile == 16) {
+			score.increaseScore(1, timeStep);
+		}
+
+		if (currentTile == 15) {
+			score.increaseScore(2, timeStep);
+		}
 	}
 
 	//Calculates the next tile based on the direction of the player
@@ -95,6 +103,8 @@ void GameObject::updateObject(TileMap *map, const int &newDir, const int &timeSt
 
 	moveObject(timeStep);
 	animateObject();
+
+	SDL_Delay(50);
 	
 }
 
@@ -130,8 +140,8 @@ void GameObject::moveObject(const int &timeStep) {
 		break;
 	}*/
 
-	mapY += yVel * timeStep;
-	mapX += xVel * timeStep;
+	mapY += yVel;
+	mapX += xVel;
 
 	destRect.y = (mapY * 24 - 10) + 80;
 	destRect.x = (mapX * 24 - 10);

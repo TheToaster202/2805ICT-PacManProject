@@ -5,10 +5,12 @@
 #include <iostream>
 #include <cstring>
 #include <cstdlib>
+#include <string>
 
 #define SDL_MAIN_HANDLED
 #include "SDL.h"
 #include "SDL_image.h"
+#include "SDL_ttf.h"
 
 /// Acts as the main Parent Class for the game and is resposible for all game functionality
 

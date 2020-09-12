@@ -2,6 +2,7 @@
 
 #include "PacManGame.h"
 #include "TileMap.h"
+#include "Score.h"
 
 /// Encapulates all of the information regarding the player character including: textures, rendering, movement and collision
 
@@ -15,7 +16,7 @@ public:
 	~GameObject();
 
 	//! Updates the player character with every frame
-	void updateObject(TileMap *map, int const &newDir, int const &timeStep);
+	void updateObject(TileMap *map, PacScore & score, int const &newDir, int const &timeStep);
 	//! Renders the player character to the screen every frame
 	void renderObject();
 	//! Handles the movement of the player character
