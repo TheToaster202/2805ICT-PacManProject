@@ -3,7 +3,7 @@
 #include "PacManGame.h"
 
 //! Class responsible for keeping track of and displaying the score
-class PacScore {
+class PacScore{
 public:
 
 	PacScore();

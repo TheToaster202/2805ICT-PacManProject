@@ -5,7 +5,7 @@
 /// Class that creates a simple Box that will house the Timer and Game Score
 /// </summary>
 
-class GameUI {
+class GameUI{
 public:
 
 	GameUI();

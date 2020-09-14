@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameTimer.cpp" />
+    <ClCompile Include="Ghost.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PacManGame.cpp" />
     <ClCompile Include="Score.cpp" />
@@ -163,11 +164,15 @@
   <ItemGroup>
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameTimer.h" />
+    <ClInclude Include="Ghost.h" />
     <ClInclude Include="PacManGame.h" />
     <ClInclude Include="Score.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="TileMap.h" />
     <ClInclude Include="UI.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

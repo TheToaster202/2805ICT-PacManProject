@@ -6,7 +6,7 @@
 
 /// Encapulates all of the information regarding the player character including: textures, rendering, movement and collision
 
-class GameObject {
+class GameObject{
 
 public:
 
@@ -62,4 +62,6 @@ private:
 	
 	double xVel;
 	double yVel;
+
+	bool isMoving;
 };

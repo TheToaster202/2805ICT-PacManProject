@@ -2,10 +2,9 @@
 #ifndef PacManGame_h
 #define PacManGame_h
 
-#include <iostream>
-#include <cstring>
 #include <cstdlib>
 #include <string>
+#include <iostream>
 
 #define SDL_MAIN_HANDLED
 #include "SDL.h"

@@ -32,6 +32,8 @@ GameObject::GameObject(const char* texturePath) {
 	xVel = 0;
 	yVel = 0;
 
+	isMoving = false;
+
 }
 
 GameObject::~GameObject(){}
@@ -39,18 +41,10 @@ GameObject::~GameObject(){}
 //! Encapsulates all items about the player character that are to updated every frame
 void GameObject::updateObject(TileMap *map, PacScore & score, const int &newDir, const int &timeStep) {
 
-	/*if (direction != 0 && (destRect.y + 10) % 24 == 0 && (destRect.x + 10) % 24 == 0) {
-		mapY = (destRect.y + 10) / 24;
-		mapX = (destRect.x + 10) / 24;
-		currentTile = map->getMapVal(mapX, mapY);
-	}*/
-
-	//std::cout << "TIME STEP: " << timeStep << std::endl;
-
-	direction = newDir;
+	if (!isMoving) {
+		direction = newDir;
+	}
 	currentTile = map->getMapVal(mapX, mapY);
-
-	//std::cout << currentTile << std::endl;
 
 	if (currentTile == 15 || currentTile == 16) {
 		map->changeTile(mapX, mapY);
@@ -65,6 +59,7 @@ void GameObject::updateObject(TileMap *map, PacScore & score, const int &newDir,
 	}
 
 	//Calculates the next tile based on the direction of the player
+	
 	switch (direction) {
 	case 0:
 		//nextTile = currentTile;
@@ -97,14 +92,10 @@ void GameObject::updateObject(TileMap *map, PacScore & score, const int &newDir,
 		break;
 	}
 
-	//std::cout << mapX << " " << mapY << " " << direction << " " << nextTile << std::endl << destRect.x << " " << destRect.y << std::endl;
 
 	//Moves the player
-
 	moveObject(timeStep);
 	animateObject();
-
-	SDL_Delay(50);
 	
 }
 
@@ -114,37 +105,32 @@ void GameObject::renderObject() {
 
 //! Method that will handle calculating the next position of the player char
 void GameObject::moveObject(const int &timeStep) {
-	
-	int posTest= 0;
 
 	if (nextTile != 7 && nextTile != 16 && nextTile != 15) {
 		direction = 0;
 		return;
 	}
 
-	/*switch (direction) {
-	case 1:
-		destRect.y -= yVel * timeStep;
-		break;
-	case 2:
-		destRect.y += yVel * timeStep;
-		break;
-	case 3:
-		destRect.x += xVel * timeStep;
-		break;
-	case 4:
-		destRect.x -= xVel * timeStep;
-		break;
-	default:
-		direction = 0;
-		break;
-	}*/
+	if (destRect.y == ((mapY+yVel) * 24 - 10) + 80 && destRect.x == ((mapX+xVel) * 24 - 10)) {
+		mapY += yVel;
+		mapX += xVel;
+		isMoving = false;
+	}
+	else {
 
-	mapY += yVel;
+		destRect.x += xVel * 8;
+		destRect.y += yVel * 8;
+		isMoving = true;
+
+	}
+	
+	/*mapY += yVel;
 	mapX += xVel;
 
 	destRect.y = (mapY * 24 - 10) + 80;
 	destRect.x = (mapX * 24 - 10);
+
+	SDL_Delay(50);*/
 	
 }
 

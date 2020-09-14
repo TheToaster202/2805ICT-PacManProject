@@ -4,6 +4,7 @@
 #include "GameTimer.h"
 #include "Score.h"
 #include "UI.h"
+#include "Ghost.h"
 
 SDL_Renderer* PacManGame::renderer = nullptr;
 
@@ -12,10 +13,15 @@ TileMap* map;
 GameTimer stepTimer;
 PacScore gameScore;
 GameUI ui;
+Ghosts* blinky;
 
 int timeCount = 0;
 
 PacManGame::PacManGame() {
+
+    pacMan = nullptr;
+    map = nullptr;
+    blinky = nullptr;
 
     //Game screen values
     screenWidth = 0;
@@ -83,6 +89,7 @@ void PacManGame::gameInit() {
         map->loadMap();
 
         pacMan = new GameObject("Images/PM_Sheet.png"); //Player
+        blinky = new Ghosts(1, "Images/Blinky_Sheet.png");
 
     }
         
@@ -156,6 +163,7 @@ void PacManGame::gameRender() {
 
     map->drawMap();
     pacMan->renderObject();
+    blinky->renderGhost();
 
     ui.renderUI(map->getOffset(), screenWidth, gameScore.getScore(), timeStep);
 
