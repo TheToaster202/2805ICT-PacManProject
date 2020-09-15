@@ -118,8 +118,8 @@ void GameObject::moveObject(const int &timeStep) {
 	}
 	else {
 
-		destRect.x += xVel * 8;
-		destRect.y += yVel * 8;
+		destRect.x += xVel * 4;
+		destRect.y += yVel * 4;
 		isMoving = true;
 
 	}

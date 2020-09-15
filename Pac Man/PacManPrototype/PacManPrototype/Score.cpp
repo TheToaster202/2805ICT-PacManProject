@@ -37,6 +37,10 @@ double PacScore::scoreScale(double const & currentTimer) {
 	if (currentTimer < 11) {
 		return 0;
 	}
+
+	if (factorConst * log(currentTimer - 10) > 9) {
+		return 9;
+	}
 	
 	return factorConst * log(currentTimer - 10);
 	

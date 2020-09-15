@@ -136,21 +136,9 @@ void PacManGame::eventHandler() {
 void PacManGame::gameUpdate() {
     
     int timeStep = stepTimer.getTicks() / 1000;
-    int moveAllower = 1;
-
-    //std::cout << "Timer: " << timeStep << std::endl;
-
-    /*if (timeStep > timeCount) {
-        timeCount = timeStep;
-        moveAllower = 1;
-    }*/
 
     pacMan->updateObject(map, gameScore, keyInput, timeStep);
 
-    /*if (timeStep % 2 == 0) {
-        //stepTimer.pause();
-        std::cout << "TIMER PASUSED: " << timeStep << std::endl;
-    }*/
 }
 
 //! Renders the map, player character and ghosts.
