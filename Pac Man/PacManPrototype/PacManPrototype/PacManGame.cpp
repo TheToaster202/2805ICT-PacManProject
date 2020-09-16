@@ -61,12 +61,14 @@ void PacManGame::gameInit() {
         Or make them debug mode only*/
         std::cout << "Game systems successfully initialised" << std::endl;
 
-        //Loading map data, to get the needed size of the screen
+        //Loading map data from file, to get the needed size of the screen
         map = new TileMap(); //Map
 
+        //Collects the dimensions of the maze, and uses them to create the size of the screen.
         screenHeight = (map->getRows() * 24) + map->getOffset();
         screenWidth = (map->getCols() * 24);
 
+        //Places the UI within the offset of the maze
         ui.initUI(map->getOffset(), screenWidth);
 
         //Creates the game windows and centres it in the screen

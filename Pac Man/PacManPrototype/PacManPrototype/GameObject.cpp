@@ -44,6 +44,7 @@ void GameObject::updateObject(TileMap *map, PacScore & score, const int &newDir,
 	if (!isMoving) {
 		direction = newDir;
 	}
+
 	currentTile = map->getMapVal(mapX, mapY);
 
 	if (currentTile == 15 || currentTile == 16) {
@@ -123,14 +124,6 @@ void GameObject::moveObject(const int &timeStep) {
 		isMoving = true;
 
 	}
-	
-	/*mapY += yVel;
-	mapX += xVel;
-
-	destRect.y = (mapY * 24 - 10) + 80;
-	destRect.x = (mapX * 24 - 10);
-
-	SDL_Delay(50);*/
 	
 }
 

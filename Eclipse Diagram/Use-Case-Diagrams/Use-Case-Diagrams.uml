@@ -4,21 +4,21 @@
     <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
   </packageImport>
   <packagedElement xmi:type="uml:Package" xmi:id="_OqLfkNk4EeqN2pTcvJdguw" name="Pac Man Game">
-    <packagedElement xmi:type="uml:UseCase" xmi:id="_U_hRANk4EeqN2pTcvJdguw" name="Adjust Settings"/>
-    <packagedElement xmi:type="uml:UseCase" xmi:id="_bPUbINk4EeqN2pTcvJdguw" name="View Tutoiral"/>
-    <packagedElement xmi:type="uml:UseCase" xmi:id="_jEH0MNk4EeqN2pTcvJdguw" name="Set Environment"/>
-    <packagedElement xmi:type="uml:UseCase" xmi:id="_0G4KkNk4EeqN2pTcvJdguw" name="Play Game">
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_U_hRANk4EeqN2pTcvJdguw" name="Adjust Settings UC-5"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_bPUbINk4EeqN2pTcvJdguw" name="View Tutoiral UC-4"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_jEH0MNk4EeqN2pTcvJdguw" name="Set Environment UC-3"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_0G4KkNk4EeqN2pTcvJdguw" name="Play Game UC-1">
       <include xmi:type="uml:Include" xmi:id="_iqWz4Nk5EeqN2pTcvJdguw" addition="_9N4yYNk4EeqN2pTcvJdguw"/>
       <include xmi:type="uml:Include" xmi:id="_j-t-wNk5EeqN2pTcvJdguw" addition="_AfP1cNk5EeqN2pTcvJdguw"/>
       <include xmi:type="uml:Include" xmi:id="_khbDMNk5EeqN2pTcvJdguw" addition="_DGI_MNk5EeqN2pTcvJdguw"/>
       <include xmi:type="uml:Include" xmi:id="_lWj7cNk5EeqN2pTcvJdguw" addition="_H1Rn0Nk5EeqN2pTcvJdguw"/>
       <include xmi:type="uml:Include" xmi:id="_oRv6MNk5EeqN2pTcvJdguw" addition="_RKTdgNk5EeqN2pTcvJdguw"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:UseCase" xmi:id="_9N4yYNk4EeqN2pTcvJdguw" name="Load Level"/>
-    <packagedElement xmi:type="uml:UseCase" xmi:id="_AfP1cNk5EeqN2pTcvJdguw" name="Load Player"/>
-    <packagedElement xmi:type="uml:UseCase" xmi:id="_DGI_MNk5EeqN2pTcvJdguw" name="Load Ghosts"/>
-    <packagedElement xmi:type="uml:UseCase" xmi:id="_H1Rn0Nk5EeqN2pTcvJdguw" name="Start Timer"/>
-    <packagedElement xmi:type="uml:UseCase" xmi:id="_RKTdgNk5EeqN2pTcvJdguw" name="Game Loop">
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_9N4yYNk4EeqN2pTcvJdguw" name="Load Level UC-6"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_AfP1cNk5EeqN2pTcvJdguw" name="Load Player UC-7"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_DGI_MNk5EeqN2pTcvJdguw" name="Load Ghosts UC-8"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_H1Rn0Nk5EeqN2pTcvJdguw" name="Start Timer UC-9"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_RKTdgNk5EeqN2pTcvJdguw" name="Game Loop UC-10">
       <include xmi:type="uml:Include" xmi:id="_rnR2INk6EeqN2pTcvJdguw" addition="_EwGKINk6EeqN2pTcvJdguw"/>
       <include xmi:type="uml:Include" xmi:id="_sTligNk6EeqN2pTcvJdguw" addition="_NgnkkNk6EeqN2pTcvJdguw"/>
       <include xmi:type="uml:Include" xmi:id="_sxxTUNk6EeqN2pTcvJdguw" addition="_RdnloNk6EeqN2pTcvJdguw"/>
@@ -26,22 +26,22 @@
       <include xmi:type="uml:Include" xmi:id="_uwg38Nk6EeqN2pTcvJdguw" addition="_lffYgNk6EeqN2pTcvJdguw"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Usage" xmi:id="_snKbQNk5EeqN2pTcvJdguw" client="_9N4yYNk4EeqN2pTcvJdguw" supplier="_jEH0MNk4EeqN2pTcvJdguw"/>
-    <packagedElement xmi:type="uml:UseCase" xmi:id="_EwGKINk6EeqN2pTcvJdguw" name="Score"/>
-    <packagedElement xmi:type="uml:UseCase" xmi:id="_NgnkkNk6EeqN2pTcvJdguw" name="Player Movement"/>
-    <packagedElement xmi:type="uml:UseCase" xmi:id="_RdnloNk6EeqN2pTcvJdguw" name="Ghost AI"/>
-    <packagedElement xmi:type="uml:UseCase" xmi:id="_cj2TMNk6EeqN2pTcvJdguw" name="Game Win">
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_EwGKINk6EeqN2pTcvJdguw" name="Score UC-12"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_NgnkkNk6EeqN2pTcvJdguw" name="Player Movement UC-16"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_RdnloNk6EeqN2pTcvJdguw" name="Ghost AI UC-15"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_cj2TMNk6EeqN2pTcvJdguw" name="Game Win UC-14">
       <extend xmi:type="uml:Extend" xmi:id="_6uAksNk6EeqN2pTcvJdguw" extendedCase="_336hUNk6EeqN2pTcvJdguw" extensionLocation="_6uBLwNk6EeqN2pTcvJdguw"/>
       <include xmi:type="uml:Include" xmi:id="_AWhsYNk7EeqN2pTcvJdguw" addition="_7ySsMNk6EeqN2pTcvJdguw"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:UseCase" xmi:id="_lffYgNk6EeqN2pTcvJdguw" name="Game Lose">
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_lffYgNk6EeqN2pTcvJdguw" name="Game Lose UC-11">
       <include xmi:type="uml:Include" xmi:id="__uhRMNk6EeqN2pTcvJdguw" addition="_7ySsMNk6EeqN2pTcvJdguw"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Usage" xmi:id="_xaw3sNk6EeqN2pTcvJdguw" client="_EwGKINk6EeqN2pTcvJdguw" supplier="_H1Rn0Nk5EeqN2pTcvJdguw"/>
-    <packagedElement xmi:type="uml:UseCase" xmi:id="_336hUNk6EeqN2pTcvJdguw" name="Display Score">
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_336hUNk6EeqN2pTcvJdguw" name="Display Score UC-17">
       <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_6uBLwNk6EeqN2pTcvJdguw" name="ExtensionPoint1"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:UseCase" xmi:id="_7ySsMNk6EeqN2pTcvJdguw" name="Reset Game"/>
-    <packagedElement xmi:type="uml:UseCase" xmi:id="_CuELgNk7EeqN2pTcvJdguw" name="Quit"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_7ySsMNk6EeqN2pTcvJdguw" name="Reset Game UC-13"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_CuELgNk7EeqN2pTcvJdguw" name="Quit UC-2"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Actor" xmi:id="_nqEroNk4EeqN2pTcvJdguw" name="User"/>
   <packagedElement xmi:type="uml:Association" xmi:id="_pj8XUNk4EeqN2pTcvJdguw" memberEnd="_pj8-Ytk4EeqN2pTcvJdguw _pj8-Y9k4EeqN2pTcvJdguw">

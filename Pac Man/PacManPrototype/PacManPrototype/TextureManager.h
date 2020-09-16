@@ -2,7 +2,7 @@
 
 #include "PacManGame.h"
 
-/// A class that will manage the import of textures from file, and returns the created pointer to the game class
+/// A functor class that will manage the import of textures from file, and returns the created pointer to the game class
 
 class TextureController {
 public:
