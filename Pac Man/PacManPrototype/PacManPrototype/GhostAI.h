@@ -10,18 +10,20 @@
 class AI{
 public:
 
-	AI();
+	AI(int const & type);
 	~AI();
 
-	void AIPackage(int & nextX, int & nextY, int const & ghostType, TileMap const * map);	//! Method that will decide which AI package to run and will return the next postion
+	std::pair<int, int> AIPackage(TileMap const * map, int const& ghostType);	//! Method that will decide which AI package to run and will return the next postion
 
 private:
 
-	void Blinky(int& nY, int& nX, TileMap const* map);		//! Blinky's movement algorithm
-	void Pinky(int& nY, int& nX, TileMap const* map);		//! Pinky's movement algorithm
-	void Inky(int& nY, int& nX, TileMap const* map);		//! Inky's movement algorithm
-	void Clyde(int& nY, int& nX, TileMap const* map);		//! Clydes's movement algorithm
+	void Blinky(TileMap const* map);	//! Blinky's movement algorithm
+	void Pinky(TileMap const* map);		//! Pinky's movement algorithm
+	void Inky(TileMap const* map);		//! Inky's movement algorithm
+	void Clyde(TileMap const* map);		//! Clydes's movement algorithm
 
 	int cX, cY;	//Current X and Y
 	int tX, tY;	//Target X and Y, IE: player postion
+	std::pair<int, int> target;
+	int gType;
 };

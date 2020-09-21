@@ -3,6 +3,9 @@
 #include "PacManGame.h"
 #include "TileMap.h"
 #include "GameObject.h"
+#include "GhostAI.h"
+
+#include <utility>
 
 /// <summary>
 /// Class that will contain the necessary information on the ghosts. AI Packages, movement, texture creation, rendering

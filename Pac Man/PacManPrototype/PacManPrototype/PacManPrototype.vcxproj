@@ -154,6 +154,7 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameTimer.cpp" />
     <ClCompile Include="Ghost.cpp" />
+    <ClCompile Include="GhostAI.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PacManGame.cpp" />
     <ClCompile Include="Score.cpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameTimer.h" />
     <ClInclude Include="Ghost.h" />
+    <ClInclude Include="GhostAI.h" />
     <ClInclude Include="PacManGame.h" />
     <ClInclude Include="Score.h" />
     <ClInclude Include="TextureManager.h" />

@@ -30,9 +30,11 @@ Ghosts::Ghosts(int const& type, const char * texturePath){
 
 	xVel = 1;
 	yVel = 1;
+
+	AI gAI(gType);
 }
 
-Ghosts::~Ghosts(){
+Ghosts::~Ghosts() {
 	SDL_DestroyTexture(gTexture);
 }
 
