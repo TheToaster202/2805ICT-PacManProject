@@ -24,6 +24,9 @@ public:
 	//! Animates the player character
 	void animateObject();
 
+	int getX();	//! Returns player X position
+	int getY();	//! Returns player Y position
+
 private:
 
 	//! Player character texture

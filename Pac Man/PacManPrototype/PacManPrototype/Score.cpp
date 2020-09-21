@@ -28,7 +28,7 @@ void PacScore::increaseScore(int const & scoreType, double const & currentTimer)
 		break;
 	}
 
-	std::cout << gameScore << " " << scoreScale(currentTimer) << " " << currentTimer << std::endl;
+	//std::cout << gameScore << " " << scoreScale(currentTimer) << " " << currentTimer << std::endl;
 	
 }
 

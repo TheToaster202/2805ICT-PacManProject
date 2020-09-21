@@ -178,9 +178,7 @@ void TileMap::mapData(int lvl) {
 			map[i][j] = 0;
 		}
 	}
-
 	//Reads the rest of the file
-
 	int i = 0;
 	while (getline(input, line)) {
 		ss.clear();
@@ -208,9 +206,7 @@ void TileMap::mapData(int lvl) {
 
 		i++;
 	}
-
 	input.close();
-	
 }
 
 int TileMap::getMapVal(int x, int y) { return map[y][x]; }

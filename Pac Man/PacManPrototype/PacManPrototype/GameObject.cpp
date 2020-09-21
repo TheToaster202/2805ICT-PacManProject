@@ -1,6 +1,5 @@
 #include "GameObject.h"
 #include "TextureManager.h"
-#include "TileMap.h"
 
 
 GameObject::GameObject(const char* texturePath) {
@@ -36,7 +35,9 @@ GameObject::GameObject(const char* texturePath) {
 
 }
 
-GameObject::~GameObject(){}
+GameObject::~GameObject(){
+	SDL_DestroyTexture(objectTexture);
+}
 
 //! Encapsulates all items about the player character that are to updated every frame
 void GameObject::updateObject(TileMap *map, PacScore & score, const int &newDir, const int &timeStep) {
@@ -93,11 +94,9 @@ void GameObject::updateObject(TileMap *map, PacScore & score, const int &newDir,
 		break;
 	}
 
-
 	//Moves the player
 	moveObject(timeStep);
 	animateObject();
-	
 }
 
 void GameObject::renderObject() {
@@ -165,3 +164,6 @@ void GameObject::animateObject() {
 	animIndex += indexer;
 	
 }
+
+int GameObject::getX() { return mapX; }
+int GameObject::getY() { return mapY; }

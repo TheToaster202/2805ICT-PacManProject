@@ -140,6 +140,7 @@ void PacManGame::gameUpdate() {
     int timeStep = stepTimer.getTicks() / 1000;
 
     pacMan->updateObject(map, gameScore, keyInput, timeStep);
+    blinky->updateGhost(map, pacMan);
 
 }
 
