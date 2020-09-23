@@ -31,7 +31,10 @@ Ghosts::Ghosts(int const& type, const char * texturePath){
 	xVel = 1;
 	yVel = 1;
 
-	AI gAI(gType);
+	mode = 1;
+
+	pacDirection = 0;
+
 }
 
 Ghosts::~Ghosts() {
@@ -43,8 +46,8 @@ void Ghosts::renderGhost() {
 }
 
 void Ghosts::updateGhost(TileMap* map, GameObject* pacMan) {
-	
-	/*Temporary code that will be replaced by an AI class*/
+
+	gAI.AIPackage(map, mapX, mapY, pacX, pacY, gType, pacMan->getDirection());
 
 	moveGhost();
 
@@ -56,3 +59,13 @@ void Ghosts::moveGhost() {
 	dRect.y += yVel;
 
 }
+
+int Ghosts::getX() { return mapX; }
+
+int Ghosts::getY() { return mapY; }
+
+int Ghosts::getPacX() { return pacX; }
+
+int Ghosts::getPacY() { return pacY; }
+
+int Ghosts::getType() { return gType; }

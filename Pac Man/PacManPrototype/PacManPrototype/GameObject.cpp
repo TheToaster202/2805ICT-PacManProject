@@ -167,3 +167,4 @@ void GameObject::animateObject() {
 
 int GameObject::getX() { return mapX; }
 int GameObject::getY() { return mapY; }
+int GameObject::getDirection() { return direction; }

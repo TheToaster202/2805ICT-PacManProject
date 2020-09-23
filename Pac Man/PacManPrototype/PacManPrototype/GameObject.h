@@ -26,6 +26,7 @@ public:
 
 	int getX();	//! Returns player X position
 	int getY();	//! Returns player Y position
+	int getDirection();	//! Returns players current direction
 
 private:
 
