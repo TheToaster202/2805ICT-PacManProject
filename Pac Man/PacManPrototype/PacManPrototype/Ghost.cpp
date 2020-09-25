@@ -23,7 +23,7 @@ Ghosts::Ghosts(int const& type, const char * texturePath){
 	currentTile = 0;
 	nextTile = 0;
 
-	direction = 0;
+	direction = 1;
 
 	pacX = 0;
 	pacY = 0;
@@ -47,7 +47,10 @@ void Ghosts::renderGhost() {
 
 void Ghosts::updateGhost(TileMap* map, GameObject* pacMan) {
 
-	gAI.AIPackage(map, mapX, mapY, pacX, pacY, gType, pacMan->getDirection());
+	pacY = pacMan->getY();
+	pacX = pacMan->getX();
+	
+	gAI.AIPackage(map, mapX, mapY, pacX, pacY, gType, pacMan->getDirection(), direction);
 
 	moveGhost();
 
@@ -55,9 +58,6 @@ void Ghosts::updateGhost(TileMap* map, GameObject* pacMan) {
 
 void Ghosts::moveGhost() {
 	
-	dRect.x += xVel;
-	dRect.y += yVel;
-
 }
 
 int Ghosts::getX() { return mapX; }

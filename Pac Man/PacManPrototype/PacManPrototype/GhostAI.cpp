@@ -1,17 +1,11 @@
 #include "GhostAI.h"
 
-AI::~AI(){
-	delete[] sptSet;
-	delete[] distances;
-}
+AI::~AI(){}
 
-std::pair<int, int> AI::AIPackage(TileMap* map, int const & currentX, int const & currentY, int const & targetX, int const & targetY, int const & ghostType, int const & playerDirection) {
+std::pair<int, int> AI::AIPackage(TileMap* map, int const & currentX, int const & currentY, int const & targetX, int const & targetY, int const & ghostType, int const & playerDirection, int const & ghostDirection) {
 
-	distances = new int[map->getRows()];
-	sptSet = new bool[map->getRows()];
-
-	memset(distances, 0, map->getRows());
-	memset(sptSet, 0, map->getRows());
+	rowMove[0] = -1, rowMove[1] = 0, rowMove[2] = 0, rowMove[3] = 1;
+	colMove[0] = 0, colMove[1] = -1, colMove[2] = 1, colMove[3] = 0;
 
 	cX = currentX;
 	cY = currentY;
@@ -50,6 +44,8 @@ void AI::Blinky(TileMap * map, int const& targetX, int const& targetY, int const
 	tX = targetX;
 	tY = targetY;
 
+	shortestPath(map);
+
 }	
 
 //! Pinky will target the tiles in front of the player in an attempt to ambush them.
@@ -67,10 +63,92 @@ void AI::Clyde(TileMap * map, int const& targetX, int const& targetY, int const 
 
 }
 
-void AI::shortestPath() {
+int printPath(std::vector<Node> path) {
+	if (path.size() == 0) {
+		return 0;
+	}
+
+	int len = printPath(path[0].parent) + 1;
+	//std::cout << "(" << path[0].x << ", " << path[0].y << ") ";
+	return len;
+}
+
+Node AI::shortestPath(TileMap * map) {
+
+	//Graph is unweighted
+
+	//std::cout << "HERE Init" << std::endl;
+
+	std::queue<Node> bfsQ;		//BFS Queue
+	std::set<Node> visited;		//A set of visited Nodes
+	Node srcN = { cX, cY };		//Source Node
+	Node destN = { tX, tY };	//Destination Node
+	
+	bfsQ.push(srcN);
+
+	visited.insert(srcN);
+
+	//std::cout << "HERE After Definition " << srcN.x << " " << srcN.y << " | " << destN.x << " " << destN.y << std::endl;
+
+	//Loop until bfsQ is empty
+	while (!bfsQ.empty()) {
+
+		//std::cout << "HERE Search Loop" << std::endl;
+
+		//Pop front node
+		Node curr = bfsQ.front();	//Get first item in Queue
+		bfsQ.pop();
+
+		int i = curr.x;
+		int j = curr.y;
+
+		//std::cout << i << " " << j << std::endl;
+
+		//If the current node is the target node
+		if (i == destN.x && j == destN.y) {
+			//std::cout << "HERE Print" << std::endl;
+			printPath({ curr });
+			std::cout << std::endl;
+			return curr;	// Returns the current node
+		}
+
+		//Test the four traversal options (Up, Down, Left, Right)
+		for (int k = 0; k < 4; k++) {
+			
+			//std::cout << "HERE Tile Test" << std::endl;
+			
+			int x = i + rowMove[k];
+			int y = j + colMove[k];
+
+			//std::cout << x << " " << y << std::endl;
+
+			if (validPos(x, y, map)) {
+				
+				//std::cout << "Valid Check" << std::endl;
+				
+				Node next = { x, y, {curr} };
+
+				if (!visited.count(next)) {
+
+					bfsQ.push(next);
+					visited.insert(next);
+				}
+			}
+		}
+
+	}
 
 }
 
-int AI::minDist() {
+bool AI::validPos(int const & i, int const & j, TileMap * map) {
+	
+	int n = map->getMapVal(i, j);
 
+	//std::cout << "Valid POS " << n << std::endl;
+
+	if (n != 7 && n != 16 && n != 15) {
+		return false;
+	}
+
+	return (i >= 0 && i < map->getRows()) && (j >= 0 && j < map->getCols());
 }
