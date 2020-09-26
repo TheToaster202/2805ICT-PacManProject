@@ -35,12 +35,15 @@ private:
 
 	int gType;	//Ghost type
 	int mapX, mapY;	//Map Co-ords
-	int currentTile, nextTile;
 	int direction;	//Ghosts current direction, used for animations and collision detection
 	int pacX, pacY; //Player position
 	int xVel, yVel; //Movement directions, used to move the ghost
 	int mode; //Chase-1, scatter-2, frightened-3, eaten-4 (For now, only chase mode will be used)
 	int pacDirection;	//Players direction
+
+	bool isMoving;
+
+	std::pair<int, int>returnTarget;
 
 	AI gAI;
 	

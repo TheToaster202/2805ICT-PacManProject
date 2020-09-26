@@ -14,8 +14,8 @@ GameObject::GameObject(const char* texturePath) {
 	destRect.h = 48;
 	destRect.w = 48;;
 
-	mapX = 2;
-	mapY = 2;
+	mapX = 10;
+	mapY = 30;
 
 	destRect.x = mapX * 24 - 10;
 	destRect.y = (mapY * 24 - 10) + 80;

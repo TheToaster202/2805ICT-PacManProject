@@ -40,10 +40,12 @@ private:
 	void Inky(TileMap * map, int const& targetX, int const& targetY, int const & pDir);		//! Inky's movement algorithm
 	void Clyde(TileMap * map, int const& targetX, int const& targetY, int const & pDir);		//! Clydes's movement algorithm
 
-	Node shortestPath(TileMap * map);		//! Algorithm to find the shortest path to the target node, using dijkstra's algorithm
+	void shortestPath(TileMap * map);		//! Algorithm to find the shortest path to the target node, using dijkstra's algorithm
 	bool validPos(int const & i, int const & j, TileMap * map);
+	void getPath(std::vector<Node> foundPath);
 	
 	std::pair<int, int> target;
+	std::vector<Node> gPath;
 
 	int cX, cY;	//Current X and Y
 	int tX, tY;	//Target X and Y, IE: player postion

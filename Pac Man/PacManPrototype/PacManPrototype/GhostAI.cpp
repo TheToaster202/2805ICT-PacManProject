@@ -7,6 +7,8 @@ std::pair<int, int> AI::AIPackage(TileMap* map, int const & currentX, int const 
 	rowMove[0] = -1, rowMove[1] = 0, rowMove[2] = 0, rowMove[3] = 1;
 	colMove[0] = 0, colMove[1] = -1, colMove[2] = 1, colMove[3] = 0;
 
+	gPath.clear();
+
 	cX = currentX;
 	cY = currentY;
 
@@ -45,7 +47,8 @@ void AI::Blinky(TileMap * map, int const& targetX, int const& targetY, int const
 	tY = targetY;
 
 	shortestPath(map);
-
+	target.first = gPath[1].x;
+	target.second = gPath[1].y;
 }	
 
 //! Pinky will target the tiles in front of the player in an attempt to ambush them.
@@ -63,19 +66,9 @@ void AI::Clyde(TileMap * map, int const& targetX, int const& targetY, int const 
 
 }
 
-int printPath(std::vector<Node> path) {
-	if (path.size() == 0) {
-		return 0;
-	}
+void AI::shortestPath(TileMap * map) {
 
-	int len = printPath(path[0].parent) + 1;
-	//std::cout << "(" << path[0].x << ", " << path[0].y << ") ";
-	return len;
-}
-
-Node AI::shortestPath(TileMap * map) {
-
-	//Graph is unweighted
+	//Graph is un-weighted
 
 	//std::cout << "HERE Init" << std::endl;
 
@@ -102,14 +95,13 @@ Node AI::shortestPath(TileMap * map) {
 		int i = curr.x;
 		int j = curr.y;
 
-		//std::cout << i << " " << j << std::endl;
+		//std::cout << "(" << i << " " << j << ") ";
 
 		//If the current node is the target node
 		if (i == destN.x && j == destN.y) {
 			//std::cout << "HERE Print" << std::endl;
-			printPath({ curr });
-			std::cout << std::endl;
-			return curr;	// Returns the current node
+			getPath({ curr });
+			return;
 		}
 
 		//Test the four traversal options (Up, Down, Left, Right)
@@ -138,17 +130,27 @@ Node AI::shortestPath(TileMap * map) {
 
 	}
 
+	//std::cout << std::endl;
+
+}
+
+void AI::getPath(std::vector<Node> path) {
+	if (path.size() == 0) {
+		return;
+	}
+
+	getPath(path[0].parent);
+	gPath.push_back(Node{path[0].x, path[0].y});
+	return;
 }
 
 bool AI::validPos(int const & i, int const & j, TileMap * map) {
 	
 	int n = map->getMapVal(i, j);
 
-	//std::cout << "Valid POS " << n << std::endl;
-
 	if (n != 7 && n != 16 && n != 15) {
 		return false;
 	}
 
-	return (i >= 0 && i < map->getRows()) && (j >= 0 && j < map->getCols());
+	return (j >= 0 && j < map->getRows()) && (i >= 0 && i < map->getCols());
 }
