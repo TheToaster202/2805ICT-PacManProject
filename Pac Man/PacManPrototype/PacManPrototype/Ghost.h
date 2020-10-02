@@ -21,6 +21,7 @@ public:
 	void updateGhost(TileMap * map, GameObject * pacMan);	//! Updates the state of the ghost
 	void moveGhost();	//! Moves the ghost within the maze
 	void renderGhost();	//! Renders ghost sprite to the screen
+	void animateGhost();	//! Animates the ghost
 
 	int getX();		//! Get X postion
 	int getY();		//! Get Y postion
@@ -36,7 +37,7 @@ private:
 	int gType;	//Ghost type
 	int mapX, mapY;	//Map Co-ords
 	int direction;	//Ghosts current direction, used for animations and collision detection
-	int pacX, pacY; //Player position
+	int targetX, targetY; //Target position
 	int xVel, yVel; //Movement directions, used to move the ghost
 	int mode; //Chase-1, scatter-2, frightened-3, eaten-4 (For now, only chase mode will be used)
 	int pacDirection;	//Players direction

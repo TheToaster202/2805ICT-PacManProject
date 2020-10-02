@@ -2,7 +2,7 @@
 
 AI::~AI(){}
 
-std::pair<int, int> AI::AIPackage(TileMap* map, int const & currentX, int const & currentY, int const & targetX, int const & targetY, int const & ghostType, int const & playerDirection, int const & ghostDirection) {
+std::pair<int, int> AI::AIPackage(TileMap* map, int const & currentX, int const & currentY, int const & targetX, int const & targetY, int const & ghostType, int const & ghostDirection, int const & mode) {
 
 	rowMove[0] = -1, rowMove[1] = 0, rowMove[2] = 0, rowMove[3] = 1;
 	colMove[0] = 0, colMove[1] = -1, colMove[2] = 1, colMove[3] = 0;
@@ -20,20 +20,20 @@ std::pair<int, int> AI::AIPackage(TileMap* map, int const & currentX, int const 
 	// Determines which ghost package will be used Blinky = 1, Pinky = 2, Inky = 3, Clyde = 4 and all other numbers
 	switch (gType) {
 	case 1:
-		Blinky(map, targetX, targetY, playerDirection);
+		Blinky(map, targetX, targetY, ghostDirection, mode);
 		break;
 	case 2:
-		Pinky(map, targetX, targetY, playerDirection);
+		Pinky(map, targetX, targetY, ghostDirection, mode);
 		break;
 	case 3:
-		Inky(map, targetX, targetY, playerDirection);
+		Inky(map, targetX, targetY, ghostDirection, mode);
 		break;
 	case 4:
-		Clyde(map, targetX, targetY, playerDirection);
+		Clyde(map, targetX, targetY, ghostDirection, mode);
 		break;
 	default:
 		std::cout << "Incorrect Ghost Types, using Clyde Instead..." << std::endl;
-		Clyde(map, targetX, targetY, playerDirection);
+		Clyde(map, targetX, targetY, ghostDirection, mode);
 		break;
 	}
 
@@ -41,28 +41,46 @@ std::pair<int, int> AI::AIPackage(TileMap* map, int const & currentX, int const 
 }
 
 //! Blinky will always target the player, and will find the shortest path to the players current tile
-void AI::Blinky(TileMap * map, int const& targetX, int const& targetY, int const & pDir) {
+void AI::Blinky(TileMap * map, int const& targetX, int const& targetY, int const & gDir, int const & mode) {
 
-	tX = targetX;
-	tY = targetY;
+	switch (mode) {
+	case 1:
+		tX = targetX;
+		tY = targetY;
+		break;
+	case 2:
+		tX = map->getCols()-3;	//Targets the top right corner;
+		tY = 2;
+		break;
+	case 3:
+		tX = map->getCols()-3;	//Targets the top right corner;
+		tY = 2;
+		break;
+	case 4:
+		tX = 14;
+		tY = 12;
+		break;
+	}
+	
 
 	shortestPath(map);
+
 	target.first = gPath[1].x;
 	target.second = gPath[1].y;
 }	
 
 //! Pinky will target the tiles in front of the player in an attempt to ambush them.
-void AI::Pinky(TileMap * map, int const& targetX, int const& targetY, int const & pDir) {
+void AI::Pinky(TileMap * map, int const& targetX, int const& targetY, int const & pDir, int const& mode) {
 
 }		
 
 //! Inky will look to cut off the players escape by targeting the tile behind the player
-void AI::Inky(TileMap * map, int const& targetX, int const& targetY, int const & pDir) {
+void AI::Inky(TileMap * map, int const& targetX, int const& targetY, int const & pDir, int const& mode) {
 
 }		
 
 //! Clyde will chase the player, until he gets to close and goes back to his corner of the map...
-void AI::Clyde(TileMap * map, int const& targetX, int const& targetY, int const & pDir) {
+void AI::Clyde(TileMap * map, int const& targetX, int const& targetY, int const & pDir, int const& mode) {
 
 }
 
@@ -76,6 +94,8 @@ void AI::shortestPath(TileMap * map) {
 	std::set<Node> visited;		//A set of visited Nodes
 	Node srcN = { cX, cY };		//Source Node
 	Node destN = { tX, tY };	//Destination Node
+
+	int heuristic = sqrt(pow((cX - tX), 2) + pow((cY - tY), 2));	//Euclidean distance from source to target
 	
 	bfsQ.push(srcN);
 
@@ -94,8 +114,6 @@ void AI::shortestPath(TileMap * map) {
 
 		int i = curr.x;
 		int j = curr.y;
-
-		//std::cout << "(" << i << " " << j << ") ";
 
 		//If the current node is the target node
 		if (i == destN.x && j == destN.y) {
@@ -117,6 +135,8 @@ void AI::shortestPath(TileMap * map) {
 			if (validPos(x, y, map)) {
 				
 				//std::cout << "Valid Check" << std::endl;
+
+				int newH = sqrt(pow((x - tX), 2) + pow((y - tY), 2));
 				
 				Node next = { x, y, {curr} };
 
@@ -124,13 +144,12 @@ void AI::shortestPath(TileMap * map) {
 
 					bfsQ.push(next);
 					visited.insert(next);
+					heuristic = newH;
 				}
 			}
 		}
 
 	}
-
-	//std::cout << std::endl;
 
 }
 

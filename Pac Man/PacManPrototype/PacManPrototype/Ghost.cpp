@@ -24,8 +24,8 @@ Ghosts::Ghosts(int const& type, const char * texturePath){
 
 	direction = 1;
 
-	pacX = 0;
-	pacY = 0;
+	targetX = 0;
+	targetY = 0;
 
 	xVel = 1;
 	yVel = 1;
@@ -48,10 +48,11 @@ void Ghosts::updateGhost(TileMap* map, GameObject* pacMan) {
 
 	//Don't do any calculations if the ghost is currently moving to a new tile
 	if (!isMoving) {
-		pacY = pacMan->getY();
-		pacX = pacMan->getX();
+		
+		targetY = pacMan->getY();
+		targetX = pacMan->getX();
 
-		returnTarget = gAI.AIPackage(map, mapX, mapY, pacX, pacY, gType, pacMan->getDirection(), direction);
+		returnTarget = gAI.AIPackage(map, mapX, mapY, targetX, targetY, gType, direction, mode);
 
 		int xDiff = mapX - returnTarget.first;
 		int yDiff = mapY - returnTarget.second;
@@ -84,6 +85,7 @@ void Ghosts::updateGhost(TileMap* map, GameObject* pacMan) {
 	}
 
 	moveGhost();
+	animateGhost();
 
 }
 
@@ -102,12 +104,42 @@ void Ghosts::moveGhost() {
 	}
 }
 
+void Ghosts::animateGhost() {
+	
+	if (mode == 3) {
+
+		sRect.x = 16;
+		sRect.y = 32;
+
+		return;
+	}
+	
+	switch (direction) {
+	case 1:
+		sRect.x = 0;
+		break;
+	case 2:
+		sRect.x = 15;
+		break;
+	case 3:
+		sRect.x = 47;
+		break;
+	case 4:
+		sRect.x = 31;
+		break;
+	}
+
+	if (mode == 1) {
+		sRect.y = 0;
+	}
+	else if (mode == 4) {
+		sRect.y = 15;
+	}
+
+}
+
 int Ghosts::getX() { return mapX; }
 
 int Ghosts::getY() { return mapY; }
-
-int Ghosts::getPacX() { return pacX; }
-
-int Ghosts::getPacY() { return pacY; }
 
 int Ghosts::getType() { return gType; }
