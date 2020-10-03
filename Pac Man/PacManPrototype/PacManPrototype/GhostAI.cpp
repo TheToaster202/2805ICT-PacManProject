@@ -2,7 +2,7 @@
 
 AI::~AI(){}
 
-std::pair<int, int> AI::AIPackage(TileMap* map, int const & currentX, int const & currentY, int const & targetX, int const & targetY, int const & ghostType, int const & ghostDirection, int const & mode) {
+std::pair<int, int> AI::AIPackage(TileMap* map, int const & currentX, int const & currentY, int const & targetX, int const & targetY, int const & ghostType, int const & ghostDirection, int const & mode, int const & playerDirection) {
 
 	rowMove[0] = -1, rowMove[1] = 0, rowMove[2] = 0, rowMove[3] = 1;
 	colMove[0] = 0, colMove[1] = -1, colMove[2] = 1, colMove[3] = 0;
@@ -23,10 +23,10 @@ std::pair<int, int> AI::AIPackage(TileMap* map, int const & currentX, int const 
 		Blinky(map, targetX, targetY, ghostDirection, mode);
 		break;
 	case 2:
-		Pinky(map, targetX, targetY, ghostDirection, mode);
+		Pinky(map, targetX, targetY, ghostDirection, mode, playerDirection);
 		break;
 	case 3:
-		Inky(map, targetX, targetY, ghostDirection, mode);
+		Inky(map, targetX, targetY, ghostDirection, mode, playerDirection);
 		break;
 	case 4:
 		Clyde(map, targetX, targetY, ghostDirection, mode);
@@ -70,18 +70,87 @@ void AI::Blinky(TileMap * map, int const& targetX, int const& targetY, int const
 }	
 
 //! Pinky will target the tiles in front of the player in an attempt to ambush them.
-void AI::Pinky(TileMap * map, int const& targetX, int const& targetY, int const & pDir, int const& mode) {
+void AI::Pinky(TileMap * map, int const& targetX, int const& targetY, int const & gDir, int const& mode, int const& pDir) {
+	switch (mode) {
+	case 1:
+		tX = targetX;
+		tY = targetY;
+		break;
+	case 2:
+		tX = 2;
+		tY = 2;
+		break;
+	case 3:
+		tX = 2;
+		tY = 2;
+		break;
+	case 4:
+		tX = 14;
+		tY = 12;
+		break;
+	}
 
+
+	shortestPath(map);
+
+	target.first = gPath[1].x;
+	target.second = gPath[1].y;
 }		
 
 //! Inky will look to cut off the players escape by targeting the tile behind the player
-void AI::Inky(TileMap * map, int const& targetX, int const& targetY, int const & pDir, int const& mode) {
+void AI::Inky(TileMap * map, int const& targetX, int const& targetY, int const & gDir, int const& mode, int const& pDir) {
+	switch (mode) {
+	case 1:
+		tX = targetX;
+		tY = targetY;
+		break;
+	case 2:
+		tX = 2;	
+		tY = map->getRows();
+		break;
+	case 3:
+		tX = 2;
+		tY = map->getRows();
+		break;
+	case 4:
+		tX = 14;
+		tY = 12;
+		break;
+	}
 
+
+	shortestPath(map);
+
+	target.first = gPath[1].x;
+	target.second = gPath[1].y;
 }		
 
 //! Clyde will chase the player, until he gets to close and goes back to his corner of the map...
-void AI::Clyde(TileMap * map, int const& targetX, int const& targetY, int const & pDir, int const& mode) {
+void AI::Clyde(TileMap * map, int const& targetX, int const& targetY, int const & gDir, int const& mode) {
+	switch (mode) {
+	case 1:
+		tX = targetX;
+		tY = targetY;
+		break;
+	case 2:
+		tX = map->getCols() - 3;	
+		tY = map->getRows() - 3;
+		break;
+	case 3:
+		tX = map->getCols() - 3;	
+		tY = map->getRows() - 3;
+		break;
+	case 4:
+		tX = 14;
+		tY = 12;
+		break;
+	}
 
+
+	shortestPath(map);
+
+	target.first = gPath[1].x;
+	target.second = gPath[1].y;
 }
 
 void AI::shortestPath(TileMap * map) {
@@ -100,8 +169,6 @@ void AI::shortestPath(TileMap * map) {
 	bfsQ.push(srcN);
 
 	visited.insert(srcN);
-
-	//std::cout << "HERE After Definition " << srcN.x << " " << srcN.y << " | " << destN.x << " " << destN.y << std::endl;
 
 	//Loop until bfsQ is empty
 	while (!bfsQ.empty()) {

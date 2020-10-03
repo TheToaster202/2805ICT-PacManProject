@@ -1,7 +1,7 @@
 #include "Ghost.h"
 #include "TextureManager.h"
 
-Ghosts::Ghosts(int const& type, const char * texturePath){
+Ghosts::Ghosts(TileMap* map, int const& type, const char * texturePath, int const & setDifficulty){
 	gTexture = TextureController::LoadTexture(texturePath);
 
 	gType = type;
@@ -14,11 +14,8 @@ Ghosts::Ghosts(int const& type, const char * texturePath){
 	dRect.h = 48;
 	dRect.w = 48;
 
-	mapY = 30;
+	mapY = 2;
 	mapX = 2;
-
-	dRect.x = mapX * 24 - 11;
-	dRect.y = (mapY * 24 - 11) + 80;
 
 	isMoving = false;
 
@@ -34,6 +31,53 @@ Ghosts::Ghosts(int const& type, const char * texturePath){
 
 	pacDirection = 0;
 
+	difficulty = setDifficulty;
+
+	enterScatter = 0;
+	exitScatter = 0;
+
+	returnTarget.first = 0;
+	returnTarget.second = 0;
+
+	switch (gType) {
+	case 1:						//Blinky will rarely enter scatter mode, and will easily leave it
+		enterScatter = 90;		//10% to enter
+		exitScatter = 60;		//90% to leave	... etc
+
+		mapY = 2;
+		mapX = map->getCols()-3;
+		
+		break;
+	case 2:
+		enterScatter = 60;
+		exitScatter = 70;
+
+		mapY = 2;
+		mapX = 2;
+
+		break;
+	case 3:
+		enterScatter = 60;
+		exitScatter = 40;
+
+		mapY = map->getRows()-3;
+		mapX = 2;
+
+		break;
+	case 4:
+		enterScatter = 40;
+		exitScatter = 80;
+
+		mapY = map->getRows()-3;
+		mapX = map->getCols()-3;
+		break;
+	}
+
+	dRect.x = mapX * 24 - 11;
+	dRect.y = (mapY * 24 - 11) + 80;
+
+	countTimer.start();
+
 }
 
 Ghosts::~Ghosts() {
@@ -48,11 +92,61 @@ void Ghosts::updateGhost(TileMap* map, GameObject* pacMan) {
 
 	//Don't do any calculations if the ghost is currently moving to a new tile
 	if (!isMoving) {
+
+		int timeStep = (countTimer.getTicks() / 100) + (rand() - 10) % 20;
+
+		if (mode == 1) {
+			int chance = (rand() - 10) % 20;		//Generate a number between 0 and 100
+			chance += difficulty;			//Potentially nudging to chance out side of the tolerance
+
+			/*if (chance <= enterScatter) {
+				mode = 2;
+			}*/
+
+			if (timeStep + difficulty >= enterScatter + chance) {
+				mode = 2;
+				
+				countTimer.stop();
+				countTimer.start();
+
+				enterScatter += difficulty;
+			}
+		}
+		else if (mode == 2) {
+			int chance = rand() % 100;
+			chance -= difficulty;
+
+			/*if (chance <= exitScatter) {
+				mode = 1;
+			}*/
+
+			if (timeStep - difficulty >= exitScatter) {
+				mode = 1;
+				
+				countTimer.stop();
+				countTimer.start();
+
+				exitScatter -= difficulty;
+			}
+		}
+		else if (mode == 3) {
+
+		}
+		else if (mode == 4) {
+			if (mapX == 14 && mapY == 12) {
+				mode = 1;
+				
+				countTimer.stop();
+				countTimer.start();
+			}
+		}
+
+		//std::cout << mapX << " " << mapY << std::endl;
 		
 		targetY = pacMan->getY();
 		targetX = pacMan->getX();
 
-		returnTarget = gAI.AIPackage(map, mapX, mapY, targetX, targetY, gType, direction, mode);
+		returnTarget = gAI.AIPackage(map, mapX, mapY, targetX, targetY, gType, direction, mode, pacDirection);
 
 		int xDiff = mapX - returnTarget.first;
 		int yDiff = mapY - returnTarget.second;
@@ -90,6 +184,7 @@ void Ghosts::updateGhost(TileMap* map, GameObject* pacMan) {
 }
 
 void Ghosts::moveGhost() {
+	
 	if (dRect.y == (returnTarget.second * 24 - 11) + 80 && dRect.x == (returnTarget.first * 24 - 11)) {
 		mapX = returnTarget.first;
 		mapY = returnTarget.second;
@@ -119,13 +214,13 @@ void Ghosts::animateGhost() {
 		sRect.x = 0;
 		break;
 	case 2:
-		sRect.x = 15;
+		sRect.x = 16;
 		break;
 	case 3:
-		sRect.x = 47;
+		sRect.x = 48;
 		break;
 	case 4:
-		sRect.x = 31;
+		sRect.x = 32;
 		break;
 	}
 
@@ -133,7 +228,7 @@ void Ghosts::animateGhost() {
 		sRect.y = 0;
 	}
 	else if (mode == 4) {
-		sRect.y = 15;
+		sRect.y = 16;
 	}
 
 }

@@ -13,12 +13,18 @@ TileMap* map;
 GameTimer stepTimer;
 PacScore gameScore;
 GameUI ui;
+
 Ghosts* blinky;
+Ghosts* pinky;
+Ghosts* inky;
+Ghosts* clyde;
 
 int timeCount = 0;
 
 PacManGame::PacManGame() {
 
+    srand(time(0));
+    
     pacMan = nullptr;
     map = nullptr;
     blinky = nullptr;
@@ -37,6 +43,8 @@ PacManGame::PacManGame() {
 
     keyInput = 0;
 
+    difficulty = 10;
+
     stepTimer.start();
 }
 
@@ -45,6 +53,10 @@ PacManGame::~PacManGame() {
     // for some reason this causes the visual studio to throw a fit
     //delete map;
     delete pacMan;
+    delete blinky;
+    delete pinky;
+    delete inky;
+    delete clyde;
 }
 
 //! Initialises the game by creating the window, renderer, player character and map
@@ -91,7 +103,11 @@ void PacManGame::gameInit() {
         map->loadMap();
 
         pacMan = new GameObject("Images/PM_Sheet.png"); //Player
-        blinky = new Ghosts(1, "Images/Blinky_Sheet.png");
+        
+        blinky = new Ghosts(map, 1, "Images/Blinky_Sheet.png", difficulty);
+        pinky = new Ghosts(map, 2, "Images/Pinky_Sheet.png", difficulty);
+        inky = new Ghosts(map, 3, "Images/Inky_Sheet.png", difficulty);
+        clyde = new Ghosts(map, 4, "Images/Clyde_Sheet.png", difficulty);
 
     }
         
@@ -139,10 +155,13 @@ void PacManGame::gameUpdate() {
     
     int timeStep = stepTimer.getTicks() / 1000;
 
-    std::cout << pacMan->getX() << " " << pacMan->getY() << std::endl;
+    //std::cout << pacMan->getX() << " " << pacMan->getY() << std::endl;
 
     pacMan->updateObject(map, gameScore, keyInput, timeStep);
     blinky->updateGhost(map, pacMan);
+    pinky->updateGhost(map, pacMan);
+    inky->updateGhost(map, pacMan);
+    clyde->updateGhost(map, pacMan);
 
 }
 
@@ -157,6 +176,9 @@ void PacManGame::gameRender() {
     map->drawMap();
     pacMan->renderObject();
     blinky->renderGhost();
+    pinky->renderGhost();
+    inky->renderGhost();
+    clyde->renderGhost();
 
     ui.renderUI(map->getOffset(), screenWidth, gameScore.getScore(), timeStep);
 

@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include <string>
 #include <iostream>
+#include <ctime>
 
 #define SDL_MAIN_HANDLED
 #include "SDL.h"
@@ -42,6 +43,7 @@ private:
     //!Attributes
     int screenWidth, screenHeight;
     int keyInput;
+    int difficulty;     // Will be used to influence the chance the ghosts entering scatter mode
 
     char gameTitle[19];
 
