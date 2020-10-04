@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameTimer.cpp" />
     <ClCompile Include="Ghost.cpp" />
@@ -158,6 +159,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PacManGame.cpp" />
     <ClCompile Include="Score.cpp" />
+    <ClCompile Include="SettingsMenu.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="TileMap.cpp" />
     <ClCompile Include="UI.cpp" />
@@ -167,8 +169,10 @@
     <ClInclude Include="GameTimer.h" />
     <ClInclude Include="Ghost.h" />
     <ClInclude Include="GhostAI.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="PacManGame.h" />
     <ClInclude Include="Score.h" />
+    <ClInclude Include="SettingsMenu.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="TileMap.h" />
     <ClInclude Include="UI.h" />

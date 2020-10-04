@@ -1,9 +1,9 @@
 #include "TextureManager.h"
 
-SDL_Texture* TextureController::LoadTexture(const char* texture) {
+SDL_Texture* TextureController::LoadTexture(const char* texture, SDL_Renderer * r) {
 
 	SDL_Surface* tempSurface = IMG_Load(texture);
-	SDL_Texture* tex = SDL_CreateTextureFromSurface(PacManGame::renderer, tempSurface);
+	SDL_Texture* tex = SDL_CreateTextureFromSurface(r, tempSurface);
 	SDL_FreeSurface(tempSurface);
 
 	return tex;

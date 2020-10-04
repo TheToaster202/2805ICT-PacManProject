@@ -54,7 +54,7 @@ TileMap::~TileMap(){
 //! Loads the texture from a file
 void TileMap::loadMap(){
 
-	map_tiles = TextureController::LoadTexture("Images/Tile_Sheet.png");
+	map_tiles = TextureController::LoadTexture("Images/Tile_Sheet.png", PacManGame::renderer);
 
 }
 

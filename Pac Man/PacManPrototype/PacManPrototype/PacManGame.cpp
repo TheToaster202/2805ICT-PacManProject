@@ -80,9 +80,6 @@ void PacManGame::gameInit() {
         screenHeight = (map->getRows() * 24) + map->getOffset();
         screenWidth = (map->getCols() * 24);
 
-        //Places the UI within the offset of the maze
-        ui.initUI(map->getOffset(), screenWidth);
-
         //Creates the game windows and centres it in the screen
         gameWindow = SDL_CreateWindow(gameTitle, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screenWidth, screenHeight, SDL_WINDOW_SHOWN);
         if (gameWindow) {
@@ -109,8 +106,35 @@ void PacManGame::gameInit() {
         inky = new Ghosts(map, 3, "Images/Inky_Sheet.png", difficulty);
         clyde = new Ghosts(map, 4, "Images/Clyde_Sheet.png", difficulty);
 
+        //Places the UI within the offset of the maze
+        ui.initUI(map->getOffset(), screenWidth);
+
     }
         
+}
+
+void PacManGame::resetGame() {
+    delete map;
+    delete pacMan;
+    delete blinky;
+    delete pinky;
+    delete inky;
+    delete clyde;
+
+    map = new TileMap(); //Map
+    map->loadMap();
+
+    pacMan = new GameObject("Images/PM_Sheet.png"); //Player
+
+    blinky = new Ghosts(map, 1, "Images/Blinky_Sheet.png", difficulty);
+    pinky = new Ghosts(map, 2, "Images/Pinky_Sheet.png", difficulty);
+    inky = new Ghosts(map, 3, "Images/Inky_Sheet.png", difficulty);
+    clyde = new Ghosts(map, 4, "Images/Clyde_Sheet.png", difficulty);
+
+    //Places the UI within the offset of the maze
+    ui.initUI(map->getOffset(), screenWidth);
+
+
 }
 
 //! Handles the events on the game window, qutting, keyboard input
@@ -148,6 +172,8 @@ void PacManGame::eventHandler() {
     default:
         break;
     }
+
+    ui.uiEvent(&gameEvent, difficulty, this);
 }
 
 //! Handles updating ojects every frame such as player movement, score, timers and the ghosts
@@ -168,7 +194,7 @@ void PacManGame::gameUpdate() {
 //! Renders the map, player character and ghosts.
 //! Works on a layering system, items rendered first are on a lower layer than those that follow
 void PacManGame::gameRender() {
-
+    
     int timeStep = stepTimer.getTicks() / 1000;
     
     SDL_RenderClear(renderer);

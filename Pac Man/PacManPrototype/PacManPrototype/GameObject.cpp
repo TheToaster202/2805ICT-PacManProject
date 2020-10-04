@@ -4,7 +4,7 @@
 
 GameObject::GameObject(const char* texturePath) {
 
-	objectTexture = TextureController::LoadTexture(texturePath);
+	objectTexture = TextureController::LoadTexture(texturePath, PacManGame::renderer);
 
 	srcRect.h = 16;
 	srcRect.w = 16;

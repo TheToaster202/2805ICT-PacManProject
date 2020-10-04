@@ -37,6 +37,8 @@ public:
     //! Returns whether or not the game is still running
     bool gameRunning();
 
+    void resetGame();
+
     static SDL_Renderer* renderer;
 
 private:

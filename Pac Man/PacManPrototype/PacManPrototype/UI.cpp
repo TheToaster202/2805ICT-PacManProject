@@ -44,9 +44,30 @@ void GameUI::initUI(int const& offset, int const& sW) {
 	inner.h = offset - 10;
 
 	textFont = TTF_OpenFont("Font/ARLRDBD.ttf", 24);
+
+	settingsBtn.initBtn(sW/2 - (48 * 2), offset/2 - (16 * 2), 48, 16, "Images/Button_Sheet.png", PacManGame::renderer);
 	
 	if (textFont == nullptr) {
 		std::cout << "Failed to open font: " << TTF_GetError() << std::endl;
+	}
+}
+
+void GameUI::uiEvent(SDL_Event* evnt, int & difficulty, PacManGame * state) {
+	bool isPressed = settingsBtn.buttonPress(evnt);
+
+	if (isPressed) {
+		Settings sMenu;
+
+		std::cout << "Button has been pressed" << std::endl;
+
+		difficulty = sMenu.runMenu("Images/1_Sheet.png", "Images/2_Sheet.png", "Images/3_Sheet.png");
+		std::cout << "NEW DIFFICULTY: " << difficulty << std::endl;
+
+		isPressed = false;
+
+		state->resetGame();
+
+		SDL_Delay(2000);
 	}
 }
 
@@ -64,6 +85,7 @@ void GameUI::renderUI(int const& offset, int const& sW, int const& gameScore, in
 
 	renderScore(offset,  sW,  gameScore,  gameTimer);
 	renderTimer(offset,  sW,  gameScore,  gameTimer);
+	settingsBtn.renderBtn(PacManGame::renderer);
 
 }
 

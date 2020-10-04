@@ -1,5 +1,7 @@
 #pragma once
 #include "PacManGame.h"
+#include "Button.h"
+#include "SettingsMenu.h"
 
 /// <summary>
 /// Class that creates a simple Box that will house the Timer and Game Score
@@ -16,6 +18,8 @@ public:
 	//Intialises the UI class
 	void initUI(int const& offset, int const& sW);
 
+	void uiEvent(SDL_Event * evnt, int & difficulty, PacManGame * state);
+
 private:
 
 	SDL_Rect outer;
@@ -31,6 +35,8 @@ private:
 	SDL_Surface* sTimer;
 	SDL_Texture* mTimer;
 	SDL_Rect rTimer;
+
+	Button settingsBtn;
 
 	//! Renders score to the screen, part of the UI
 	void renderScore(int const& offset, int const& sW, int const& gameScore, int const& gameTimer);

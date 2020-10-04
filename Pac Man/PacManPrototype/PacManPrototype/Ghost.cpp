@@ -2,7 +2,7 @@
 #include "TextureManager.h"
 
 Ghosts::Ghosts(TileMap* map, int const& type, const char * texturePath, int const & setDifficulty){
-	gTexture = TextureController::LoadTexture(texturePath);
+	gTexture = TextureController::LoadTexture(texturePath, PacManGame::renderer);
 
 	gType = type;
 
