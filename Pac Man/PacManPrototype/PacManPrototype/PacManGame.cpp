@@ -73,8 +73,12 @@ void PacManGame::gameInit() {
         Or make them debug mode only*/
         std::cout << "Game systems successfully initialised" << std::endl;
 
+        int levelSelector = rand() % 3;
+
+        std::cout << "Level " << levelSelector << std::endl;
+
         //Loading map data from file, to get the needed size of the screen
-        map = new TileMap(); //Map
+        map = new TileMap(levelSelector); //Map
 
         //Collects the dimensions of the maze, and uses them to create the size of the screen.
         screenHeight = (map->getRows() * 24) + map->getOffset();
@@ -114,14 +118,18 @@ void PacManGame::gameInit() {
 }
 
 void PacManGame::resetGame() {
-    delete map;
+    //delete map;
     delete pacMan;
     delete blinky;
     delete pinky;
     delete inky;
     delete clyde;
 
-    map = new TileMap(); //Map
+    int levelSelector = rand() % 4;
+
+    std::cout << levelSelector << std::endl;
+
+    map = new TileMap(levelSelector); //Map
     map->loadMap();
 
     pacMan = new GameObject("Images/PM_Sheet.png"); //Player
@@ -188,6 +196,13 @@ void PacManGame::gameUpdate() {
     pinky->updateGhost(map, pacMan);
     inky->updateGhost(map, pacMan);
     clyde->updateGhost(map, pacMan);
+
+    std::cout << map->getPellets() << std::endl;
+    
+    if (map->getPellets() == 0) {
+        std::cout << "YOU'RE WINNER" << std::endl;
+        resetGame();
+    }
 
 }
 

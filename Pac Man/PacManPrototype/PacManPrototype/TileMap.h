@@ -8,7 +8,7 @@ class TileMap {
 public:
 
 	//! Default Constructor
-	TileMap();
+	TileMap(int const & level);
 	//! Default Destructor
 	~TileMap();
 
@@ -35,6 +35,8 @@ public:
 
 	int getOffset();
 
+	int getPellets();
+
 private:
 
 	SDL_Rect src, dest;
@@ -50,4 +52,6 @@ private:
 	int lvlID;
 
 	int offset;
+
+	int pelletCount;
 };

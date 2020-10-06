@@ -10,7 +10,7 @@
 
 
 //! Delagates to the image and map data methods to collect data about the levels, then delegates to the draw map method to create the map
-TileMap::TileMap() {
+TileMap::TileMap(int const & level) {
 
 	rows = 0;
 	cols = 0;
@@ -29,7 +29,9 @@ TileMap::TileMap() {
 	imageX[0] = {0};
 	imageY[0] = {0};
 
-	lvlID = 0;
+	lvlID = level;
+
+	pelletCount = 0;
 
 	offset = 80;
 
@@ -139,6 +141,10 @@ void TileMap::mapData(int lvl) {
 
 	//Reads the layout of the level from the corresponding file
 
+	if (lvl > 3) {
+		lvl = 1;
+	}
+	
 	std::string fileName = "map";
 	fileName += std::to_string(lvl) + ".txt";
 
@@ -178,6 +184,7 @@ void TileMap::mapData(int lvl) {
 			map[i][j] = 0;
 		}
 	}
+
 	//Reads the rest of the file
 	int i = 0;
 	while (getline(input, line)) {
@@ -207,6 +214,17 @@ void TileMap::mapData(int lvl) {
 		i++;
 	}
 	input.close();
+
+	for (int i = 0; i < cols; i++) {
+		for (int j = 0; j < rows; j++) {
+			int tileId = map[j][i];
+
+			if (tileId == 15 || tileId == 16) {
+				pelletCount++;
+			}
+		}
+	}
+
 }
 
 int TileMap::getMapVal(int x, int y) { return map[y][x]; }
@@ -215,6 +233,7 @@ void TileMap::changeTile(int const& x, int const& y) {
 	
 	if (map[y][x] == 15 || map[y][x] == 16) {
 		map[y][x] = 7;
+		pelletCount--;
 	}
 
 }
@@ -233,4 +252,8 @@ int TileMap::getCols() {
 
 int TileMap::getOffset() {
 	return offset;
+}
+
+int TileMap::getPellets() {
+	return pelletCount;
 }
