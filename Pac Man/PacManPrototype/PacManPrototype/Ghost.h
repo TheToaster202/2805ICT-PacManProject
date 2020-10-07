@@ -28,7 +28,7 @@ public:
 	int getY();		//! Get Y postion
 
 	int getType();	//! Get Ghost type
-	
+	int getMode();
 
 private:
 

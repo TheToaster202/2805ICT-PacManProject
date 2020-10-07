@@ -192,15 +192,35 @@ void PacManGame::gameUpdate() {
     //std::cout << pacMan->getX() << " " << pacMan->getY() << std::endl;
 
     pacMan->updateObject(map, gameScore, keyInput, timeStep);
+    
     blinky->updateGhost(map, pacMan);
     pinky->updateGhost(map, pacMan);
     inky->updateGhost(map, pacMan);
     clyde->updateGhost(map, pacMan);
-
-    std::cout << map->getPellets() << std::endl;
     
     if (map->getPellets() == 0) {
         std::cout << "YOU'RE WINNER" << std::endl;
+        resetGame();
+    }
+
+    //Simple lose state, works for now. Will need to upgrade it later
+    if (blinky->getX() == pacMan->getX() && blinky->getY() == pacMan->getY() && blinky->getMode() == 1) {
+        std::cout << "The Ghosts have caught you!" << std::endl;
+        resetGame();
+    }
+    
+    if (pinky->getX() == pacMan->getX() && pinky->getY() == pacMan->getY() && pinky->getMode() == 1) {
+        std::cout << "The Ghosts have caught you!" << std::endl;
+        resetGame();
+    }
+
+    if (inky->getX() == pacMan->getX() && inky->getY() == pacMan->getY() && inky->getMode() == 1) {
+        std::cout << "The Ghosts have caught you!" << std::endl;
+        resetGame();
+    }
+
+    if (clyde->getX() == pacMan->getX() && clyde->getY() == pacMan->getY() && clyde->getMode() == 1) {
+        std::cout << "The Ghosts have caught you!" << std::endl;
         resetGame();
     }
 

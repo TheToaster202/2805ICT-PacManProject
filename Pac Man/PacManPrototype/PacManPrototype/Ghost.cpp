@@ -238,3 +238,5 @@ int Ghosts::getX() { return mapX; }
 int Ghosts::getY() { return mapY; }
 
 int Ghosts::getType() { return gType; }
+
+int Ghosts::getMode() { return mode; }
