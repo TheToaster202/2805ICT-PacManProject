@@ -71,11 +71,54 @@ void AI::Blinky(TileMap * map, int const& targetX, int const& targetY, int const
 
 //! Pinky will target the tiles in front of the player in an attempt to ambush them.
 void AI::Pinky(TileMap * map, int const& targetX, int const& targetY, int const & gDir, int const& mode, int const& pDir) {
+	
+	int xMove = 0;
+	int yMove = 0;
+
 	switch (mode) {
 	case 1:
-		tX = targetX;
-		tY = targetY;
+
+		switch (pDir) {
+		case 1:
+			yMove = -1;
+			xMove = 0;
+			break;
+		case 2:
+			yMove = 1;
+			xMove = 0;
+			break;
+		case 3:
+			yMove = 0;
+			xMove = 1;
+			break;
+		case 4:
+			yMove = 0;
+			xMove = -1;
+			break;
+		}
+
+		//Will set the target to 4 tiles ahead of the player
+		for (int i = 4; i > 0; i--) {
+			//int j = i++;
+
+			if (targetX + i * xMove >= map->getCols() || targetX + i * xMove <= 0 || targetY + i * yMove >= map->getRows() || targetY + i * yMove <= 0) {
+				tX = targetX;
+				tY = targetY;
+				break;
+			}
+			
+			if (map->getMapVal(targetX + (i * xMove), targetY + (i * yMove)) == 16 || map->getMapVal(targetX + (i * xMove), targetY + (i * yMove)) == 15 || map->getMapVal(targetX + (i * xMove), targetY + (i * yMove)) == 7) {
+				tX = targetX + (i * xMove);
+				tY = targetY + (i * yMove);
+				break;
+			}
+			else {
+				tX = targetX + (i * xMove);
+				tY = targetY + (i * yMove);
+			}
+		}
 		break;
+
 	case 2:
 		tX = 2;
 		tY = 2;
@@ -99,10 +142,51 @@ void AI::Pinky(TileMap * map, int const& targetX, int const& targetY, int const 
 
 //! Inky will look to cut off the players escape by targeting the tile behind the player
 void AI::Inky(TileMap * map, int const& targetX, int const& targetY, int const & gDir, int const& mode, int const& pDir) {
+	int xMove = 0;
+	int yMove = 0;
+	
 	switch (mode) {
 	case 1:
-		tX = targetX;
-		tY = targetY;
+		switch (pDir) {
+		case 1:
+			yMove = 1;
+			xMove = 0;
+			break;
+		case 2:
+			yMove = -1;
+			xMove = 0;
+			break;
+		case 3:
+			yMove = 0;
+			xMove = -1;
+			break;
+		case 4:
+			yMove = 0;
+			xMove = 1;
+			break;
+		}
+
+		//Will set the target to 4 tiles behind of the player
+		for (int i = 4; i > 0; i--) {
+			//int j = i++;
+
+			if (targetX + i * xMove >= map->getCols() || targetX + i * xMove <= 0 || targetY + i * yMove >= map->getRows() || targetY + i * yMove <= 0) {
+				tX = targetX;
+				tY = targetY;
+				break;
+			}
+
+			if (map->getMapVal(targetX + (i * xMove), targetY + (i * yMove)) == 16 || map->getMapVal(targetX + (i * xMove), targetY + (i * yMove)) == 15 || map->getMapVal(targetX + (i * xMove), targetY + (i * yMove)) == 7) {
+				tX = targetX + (i * xMove);
+				tY = targetY + (i * yMove);
+				break;
+			}
+			else {
+				tX = targetX + (i * xMove);
+				tY = targetY + (i * yMove);
+			}
+		}
+
 		break;
 	case 2:
 		tX = 2;	

@@ -1,60 +1,88 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="GameObject">
-    <Position X="14" Y="3.5" Width="1.5" />
+    <Position X="10.75" Y="7.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IJAAAAAAAAAAIAHAAAABAGAAAAAAAAAAAQARAHIBTRQ=</HashCode>
+      <HashCode>IJAAAAgAAAAAIAHAAAABAGAAAAAAAAAAAQARAHIBTRQ=</HashCode>
       <FileName>GameObject.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GameTimer">
-    <Position X="0.5" Y="5.25" Width="1.5" />
+    <Position X="6.75" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAgAAAIAEAAAAAgAhAAAAQAgAAAoAA=</HashCode>
       <FileName>GameTimer.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Ghosts">
-    <Position X="6.75" Y="1.25" Width="1.5" />
+    <Position X="4" Y="15.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAQAAABAAAAEAAAABAAAAAAAQQGADABAAA=</HashCode>
+      <HashCode>AIAAAAABAAAQJCCBggQAEAABBRAAAABAAAQHAXgwAQA=</HashCode>
       <FileName>Ghost.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PacManGame">
-    <Position X="6.75" Y="5.75" Width="1.5" />
+  <Class Name="AI">
+    <Position X="6.75" Y="18" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAQAAAAAIBAAAIAgABAAAAIAAEAAAAAAEgAYAIAgAA=</HashCode>
+      <HashCode>BSAAAAAAAgAAAABAIAIAAAIAEAAAABACCEUQAoAACAA=</HashCode>
+      <FileName>GhostAI.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Button">
+    <Position X="2" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAQQAEAAAAAAAAAAAAAAAgAACABCAEEAAAA=</HashCode>
+      <FileName>Button.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PacManGame">
+    <Position X="0.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAABAIBAAAIAgABBAAAIAAEAAAAAAEgAYAIAgAA=</HashCode>
       <FileName>PacManGame.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PacScore">
-    <Position X="2.75" Y="1.75" Width="1.5" />
+    <Position X="8.75" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAQgAAAAAAAAACAAAAAAAAAIEAAAACAAACEAAAAAAA=</HashCode>
       <FileName>Score.h</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Settings">
+    <Position X="4.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAgQAAAAAQAQAAAAAAAAgCAQAACQAEgAAAAkAAQAg=</HashCode>
+      <FileName>SettingsMenu.h</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="TextureController">
-    <Position X="11" Y="2" Width="1.5" />
+    <Position X="10.75" Y="16.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAEAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>TextureManager.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TileMap">
-    <Position X="10.5" Y="9.25" Width="1.5" />
+    <Position X="12.75" Y="7.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>SACAMABACAAAAAAQgCRAAAAAEACBCgAAAAEAAQACAAA=</HashCode>
+      <HashCode>SACAMABACAAAAAAQgCRAAAAAGACBDgAAAAEAAQACAAA=</HashCode>
       <FileName>TileMap.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GameUI">
-    <Position X="2.5" Y="9" Width="1.5" />
+    <Position X="4.75" Y="7.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>EAAEAAQQAIBCIAAABAAAAAAAgACAAAABAAAAAgAAAAg=</HashCode>
+      <HashCode>EAAEAAQQAIBCIAAABAAAAAAAgACAAAABAgAAAgAAIAg=</HashCode>
       <FileName>UI.h</FileName>
     </TypeIdentifier>
   </Class>
+  <Struct Name="Node">
+    <Position X="1.75" Y="15.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAQAAAAAAAAAAAABgAAAAAAA=</HashCode>
+      <FileName>GhostAI.h</FileName>
+    </TypeIdentifier>
+  </Struct>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

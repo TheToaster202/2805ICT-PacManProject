@@ -109,7 +109,10 @@ void Ghosts::updateGhost(TileMap* map, GameObject* pacMan) {
 				countTimer.stop();
 				countTimer.start();
 
-				enterScatter += difficulty;
+				//If not clyde
+				if (gType != 4) {
+					enterScatter += difficulty;
+				}
 			}
 		}
 		else if (mode == 2) {
@@ -126,7 +129,10 @@ void Ghosts::updateGhost(TileMap* map, GameObject* pacMan) {
 				countTimer.stop();
 				countTimer.start();
 
-				exitScatter -= difficulty;
+				//If not clyde
+				if (gType != 4) {
+					exitScatter -= difficulty;
+				}
 			}
 		}
 		else if (mode == 3) {
@@ -146,7 +152,7 @@ void Ghosts::updateGhost(TileMap* map, GameObject* pacMan) {
 		targetY = pacMan->getY();
 		targetX = pacMan->getX();
 
-		returnTarget = gAI.AIPackage(map, mapX, mapY, targetX, targetY, gType, direction, mode, pacDirection);
+		returnTarget = gAI.AIPackage(map, mapX, mapY, targetX, targetY, gType, direction, mode, pacMan->getDirection());
 
 		int xDiff = mapX - returnTarget.first;
 		int yDiff = mapY - returnTarget.second;
