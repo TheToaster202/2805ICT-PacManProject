@@ -1,3 +1,3 @@
-# 2805ICT-Milestone1
-Systems and Software Design's first Milestone.
-This repository will contain both the documentation and program files required to create a close replication of the game "Pac-Man"
+# 2805ICT-PacManProject
+Systems and Software Design's assessment.
+This repository will contain the program files required to create a close replication of the game "Pac-Man"
